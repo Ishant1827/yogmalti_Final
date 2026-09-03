@@ -161,9 +161,6 @@
             "addressCountry": "IN"
         },
 
-        "sameAs": [
-            "https://www.instagram.com/yogmalti_community/"
-        ]
     }
 
     </script>
@@ -231,6 +228,9 @@
 
     </script>
 
+    <link rel="stylesheet"
+           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 
@@ -259,51 +259,79 @@
 
         <nav class="navbar" aria-label="Primary navigation">
 
-            <a href="#home"
-   class="brand"
-   aria-label="YogMalti Home">
+                <a href="#home"
+                   class="brand"
+                   aria-label="YogMalti Home">
 
-    <img
-        src="assets/logo.png"
-        alt="YogMalti Logo"
-        width="180"
-        height="65"
-        fetchpriority="high">
+                    <img
+                        src="assets/logo.png"
+                        alt="YogMalti Logo"
+                        width="180"
+                        height="65"
+                        fetchpriority="high">
 
-    <span class="brand-name">YogMalti</span>
+                    <span class="brand-name">YogMalti</span>
 
-</a>
+                </a>
 
-            <!-- NAVIGATION -->
-            <ul class="nav-menu">
+                <div class="navbar-devotional">
 
-                <li>
-                    <a href="#home">Home</a>
-                </li>
+                    <img
+                        src="assets/images/krishna.jpeg"
+                        alt="Krishna Ji and Arjun Ji"
+                        class="krishna-arjun-img">
 
-                <li>
-                    <a href="#programs">Programs</a>
-                </li>
+                    <span class="devotional-text">
+                        Devoted to Supreme Lord
+                    </span>
 
-                <li>
-                    <a href="#about">About Us</a>
-                </li>
+                    <a href="#contact"
+                       class="navbar-join-btn">
+                        JOIN NOW
+                    </a>
 
-                <li>
-                    <a href="#benefits">Benefits</a>
-                </li>
+                </div>
 
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-
-            </ul>
-
-        </nav>
+            </nav>
 
     </div>
 
 </header>
+
+<!-- =================================================
+     TEMPORARY JANMASHTAMI
+     Remove this section after Janmashtami.
+================================================== -->
+<section class="janmashtami-temporary" id="janmashtami">
+
+    <div class="janmashtami-inner">
+
+        <img
+            src="assets/images/janmastmi.jpeg"
+            alt="Krishna Ji - Shubh Krishna Janmashtami"
+            loading="lazy">
+
+        <div class="janmashtami-content">
+
+            <span class="section-label">
+                SPECIAL CELEBRATION
+            </span>
+
+            <h2>
+                शुभ कृष्ण जन्माष्टमी
+            </h2>
+
+            <p>
+                May devotion, peace and joy fill every breath.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 
 
 <!-- STICKY REGISTER -->
@@ -321,7 +349,14 @@
          MAIN
     ====================================================== -->
 
-    <main id="main-content">
+    <!--
+PAGE ORDER:
+Navbar → Temporary Janmashtami → Hero → Marquee Gallery → 8 Programs
+→ Benefits + Stats → About Us → 5 Feedback Carousel → FAQ
+→ Join/Contact → Footer
+-->
+
+<main id="main-content">
 
 
 
@@ -368,9 +403,7 @@
 
                         <div class="hero-highlight">
 
-                            <div class="highlight-icon">
-                                ♧
-                            </div>
+                            <div class="highlight-icon"><i class="fa-solid fa-spa" aria-hidden="true"></i></div>
 
                             <span>
                                 Mindful Living
@@ -382,9 +415,7 @@
 
                         <div class="hero-highlight">
 
-                            <div class="highlight-icon">
-                                ♧
-                            </div>
+                            <div class="highlight-icon"><i class="fa-solid fa-spa" aria-hidden="true"></i></div>
 
                             <span>
                                 Healthy Body
@@ -396,9 +427,7 @@
 
                         <div class="hero-highlight">
 
-                            <div class="highlight-icon">
-                                ♡
-                            </div>
+                            <div class="highlight-icon"><i class="fa-solid fa-heart" aria-hidden="true"></i></div>
 
                             <span>
                                 Balanced Life
@@ -410,9 +439,7 @@
 
                         <div class="hero-highlight">
 
-                            <div class="highlight-icon">
-                                ☺
-                            </div>
+                            <div class="highlight-icon"><i class="fa-solid fa-face-smile" aria-hidden="true"></i></div>
 
                             <span>
                                 ₹50/Day
@@ -433,9 +460,7 @@
 
                             Start Your Journey
 
-                            <span>
-                                →
-                            </span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
 
                         </a>
 
@@ -463,19 +488,47 @@
                     </div>
 
 
-                    <div class="hero-spark spark-one">
-                        ✦
-                    </div>
+                    <div class="hero-spark spark-one"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
 
-                    <div class="hero-spark spark-two">
-                        ✦
-                    </div>
+                    <div class="hero-spark spark-two"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
 
                 </div>
 
             </div>
 
         </section>
+
+<!-- =================================================
+             IMAGE GALLERY
+        ================================================== -->
+        <section class="gallery-section section" id="gallery" aria-label="YogMalti image gallery">
+            <div class="container">
+                <div class="section-title">
+                    <span class="section-label">YOGMALTI MOMENTS</span>
+                    <h2>Our Wellness Community</h2>
+                </div>
+            </div>
+            <div class="gallery-marquee" tabindex="0" aria-label="Scrolling gallery of YogMalti photos">
+                <div class="gallery-track">
+                    <div class="gallery-item"><img src="assets/images/gallery-01.png" alt="YogMalti yoga session" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-02.png" alt="YogMalti wellness activity" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-03.png" alt="YogMalti community session" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-04.png" alt="YogMalti yoga practice" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-05.jpeg" alt="YogMalti wellness community" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-06.png" alt="YogMalti group session" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-07.png" alt="YogMalti yoga and wellness" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-08.jpg" alt="YogMalti healthy living" loading="lazy"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-01.png" alt="YogMalti yoga session" loading="lazy" aria-hidden="true"> </div>
+                    <div class="gallery-item"><img src="assets/images/gallery-02.png" alt="YogMalti wellness activity" loading="lazy" aria-hidden="true"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-03.png" alt="YogMalti community session" loading="lazy" aria-hidden="true"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-04.png" alt="YogMalti yoga practice" loading="lazy" aria-hidden="true"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-05.jpeg " alt="YogMalti wellness community" loading="lazy" aria-hidden="true"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-06.png" alt="YogMalti group session" loading="lazy" aria-hidden="true"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-07.png" alt="YogMalti yoga and wellness" loading="lazy" aria-hidden="true"></div>
+                    <div class="gallery-item"><img src="assets/images/gallery-08.jpg" alt="YogMalti healthy living" loading="lazy" aria-hidden="true"></div>
+                </div>
+            </div>
+            </section>
 
 
 
@@ -488,251 +541,562 @@
 
             <div class="container">
 
-
                 <div class="section-title">
 
-                    
+                    <span class="section-label">
+                        YOGMALTI PROGRAMS
+                    </span>
+
                     <h2>
                         Our Programs
                     </h2>
 
-                    
+                    <p>
+                        Professional wellness programs for women and kids.
+                    </p>
 
                 </div>
 
-
-
                 <div class="programs-grid">
 
-
                     <!-- PROGRAM 1 -->
-
                     <article class="program-card">
 
                         <div class="program-image">
-
                             <img
                                 src="assets/flexiblity.jpeg"
-                                alt="Yoga for strength and flexibility"
+                                alt="Yoga for Strength & Flexibility"
                                 width="500"
                                 height="350"
                                 loading="lazy">
-
                         </div>
-
 
                         <div class="program-body">
 
-                            <h3>
-                                Yoga for Strength
-                                <br>
-                                & Flexibility
-                            </h3>
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-person-running"></i>
+                            </div>
 
-                            <p>
-                                Improve mobility, build strength
-                                and prevent injuries.
-                            </p>
+                            <h3>Yoga for Strength & Flexibility</h3>
 
-                            
+                            <p>Improve mobility, build strength and support better movement.</p>
 
                         </div>
 
                     </article>
-
-
 
                     <!-- PROGRAM 2 -->
-
                     <article class="program-card">
 
                         <div class="program-image">
-
                             <img
                                 src="assets/diet.jpeg"
-                                alt="Weight loss diet plan"
+                                alt="Weight Loss Diet Plan"
                                 width="500"
                                 height="350"
                                 loading="lazy">
-
                         </div>
-
 
                         <div class="program-body">
 
-                            <h3>
-                                Weight Loss
-                                <br>
-                                Diet Plan
-                            </h3>
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-apple-whole"></i>
+                            </div>
 
-                            <p>
-                                Personalized diet plans for
-                                sustainable weight loss.
-                            </p>
+                            <h3>Weight Loss Diet Plan</h3>
 
+                            <p>Personalized diet plans for sustainable, healthy habits.</p>
 
                         </div>
 
                     </article>
-
-
 
                     <!-- PROGRAM 3 -->
-
                     <article class="program-card">
 
                         <div class="program-image">
-
                             <img
                                 src="assets/habits.jpeg"
-                                alt="Healthy habits coaching"
+                                alt="Healthy Habits Coaching"
                                 width="500"
                                 height="350"
                                 loading="lazy">
-
                         </div>
-
 
                         <div class="program-body">
 
-                            <h3>
-                                Healthy Habits
-                                <br>
-                                Coaching
-                            </h3>
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
 
-                            <p>
-                                Daily habits that transform
-                                your health and mindset.
-                            </p>
+                            <h3>Healthy Habits Coaching</h3>
 
-                           
+                            <p>Daily habits that transform your health and mindset.</p>
 
                         </div>
 
                     </article>
-
-
 
                     <!-- PROGRAM 4 -->
-
                     <article class="program-card">
 
                         <div class="program-image">
-
                             <img
                                 src="assets/strength.jpeg"
-                                alt="Strength training and toning"
+                                alt="Strength Training & Toning"
                                 width="500"
                                 height="350"
                                 loading="lazy">
-
                         </div>
-
 
                         <div class="program-body">
 
-                            <h3>
-                                Strength Training
-                                <br>
-                                & Toning
-                            </h3>
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
 
-                            <p>
-                                Guided strength workouts
-                                for a stronger you.
-                            </p>
+                            <h3>Strength Training & Toning</h3>
 
-                            
+                            <p>Guided strength workouts for a stronger, balanced body.</p>
 
                         </div>
 
                     </article>
-
-
 
                     <!-- PROGRAM 5 -->
-
                     <article class="program-card">
 
                         <div class="program-image">
-
                             <img
                                 src="assets/breathing.jpeg"
-                                alt="Breathing and sound healing"
+                                alt="Breathing & Sound Healing"
                                 width="500"
                                 height="350"
                                 loading="lazy">
-
                         </div>
-
 
                         <div class="program-body">
 
-                            <h3>
-                                Breathing & Sound
-                                <br>
-                                Healing
-                            </h3>
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-wind"></i>
+                            </div>
 
-                            <p>
-                                Breathwork and sound healing
-                                for deep relaxation.
-                            </p>
+                            <h3>Breathing & Sound Healing</h3>
 
-                            
+                            <p>Breathwork and sound healing for deep relaxation.</p>
 
                         </div>
 
-    
-
                     </article>
-                   <!-- PROGRAM 6 -->
 
+                    <!-- PROGRAM 6 -->
                     <article class="program-card">
 
                         <div class="program-image">
-
                             <img
                                 src="assets/breathing.jpeg"
-                                alt="Breathing and sound healing"
+                                alt="Meditation & Mindfulness"
                                 width="500"
                                 height="350"
                                 loading="lazy">
-
                         </div>
-
 
                         <div class="program-body">
 
-                            <h3>
-                                Breathing & Sound
-                                <br>
-                                Healing
-                            </h3>
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
 
-                            <p>
-                                Breathwork and sound healing
-                                for deep relaxation.
-                            </p>
+                            <h3>Meditation & Mindfulness</h3>
 
-                            
+                            <p>Mindful practices for calm, focus and inner balance.</p>
 
                         </div>
 
-    
+                    </article>
+
+                    <!-- PROGRAM 7 -->
+                    <article class="program-card">
+
+                        <div class="program-image">
+                            <img
+                                src="assets/flexiblity.jpeg"
+                                alt="Women’s Wellness Yoga"
+                                width="500"
+                                height="350"
+                                loading="lazy">
+                        </div>
+
+                        <div class="program-body">
+
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-person-dress"></i>
+                            </div>
+
+                            <h3>Women’s Wellness Yoga</h3>
+
+                            <p>Thoughtful yoga sessions designed around women’s wellness.</p>
+
+                        </div>
 
                     </article>
+
+                    <!-- PROGRAM 8 -->
+                    <article class="program-card">
+
+                        <div class="program-image">
+                            <img
+                                src="assets/habits.jpeg"
+                                alt="Kids Yoga & Movement"
+                                width="500"
+                                height="350"
+                                loading="lazy">
+                        </div>
+
+                        <div class="program-body">
+
+                            <div class="professional-program-icon" aria-hidden="true">
+                                <i class="fa-solid fa-child-reaching"></i>
+                            </div>
+
+                            <h3>Kids Yoga & Movement</h3>
+
+                            <p>Fun, mindful movement to build focus and confidence.</p>
+
+                        </div>
+
+                    </article>
+
                 </div>
 
             </div>
 
         </section>
 
+        
+
 
 
         <!-- =================================================
+             BENEFITS
+        ================================================== -->
+
+        <section id="benefits"
+                 class="benefits-section section">
+
+            <div class="container">
+
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        WELLNESS BENEFITS
+                    </span>
+
+                    <h2>
+                        Benefits You'll Feel,
+                        <br>
+                        Inside & Out
+                    </h2>
+
+                    <p>
+                        Yoga. Strength. Balance.
+                        A better you, every day.
+                    </p>
+
+                    <div class="section-flower">
+                        ♧
+                    </div>
+
+                </div>
+
+
+
+                <div class="benefits-grid">
+
+
+                    <!-- BENEFIT 1 -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
+
+                        <div>
+
+                            <h3>
+                                Daily Consistency
+                            </h3>
+
+                            <ul>
+
+                                <li>
+                                    Build a sustainable routine
+                                </li>
+
+                                <li>
+                                    Stay motivated & disciplined
+                                </li>
+
+                                <li>
+                                    Create a lifestyle that lasts
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BENEFIT 2 -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon"><i class="fa-solid fa-weight-scale" aria-hidden="true"></i></div>
+
+                        <div>
+
+                            <h3>
+                                Optimal Weight
+                            </h3>
+
+                            <ul>
+
+                                <li>
+                                    Personalized diet & yoga plans
+                                </li>
+
+                                <li>
+                                    Healthy weight loss the right way
+                                </li>
+
+                                <li>
+                                    Feel light, confident & energetic
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BENEFIT 3 -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i></div>
+
+                        <div>
+
+                            <h3>
+                                Physical Strength
+                            </h3>
+
+                            <ul>
+
+                                <li>
+                                    Improve stamina & endurance
+                                </li>
+
+                                <li>
+                                    Stronger muscles & better posture
+                                </li>
+
+                                <li>
+                                    Injury prevention & body stability
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BENEFIT 4 -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i></div>
+
+                        <div>
+
+                            <h3>
+                                Better Immunity
+                            </h3>
+
+                            <ul>
+
+                                <li>
+                                    Strengthen your natural defense
+                                </li>
+
+                                <li>
+                                    Improve gut health & digestion
+                                </li>
+
+                                <li>
+                                    Stay active, stay disease-free
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BENEFIT 5 -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon"><i class="fa-solid fa-face-smile-beam" aria-hidden="true"></i></div>
+
+                        <div>
+
+                            <h3>
+                                Low Stress
+                            </h3>
+
+                            <ul>
+
+                                <li>
+                                    Calm your mind & reduce anxiety
+                                </li>
+
+                                <li>
+                                    Better sleep & relaxation
+                                </li>
+
+                                <li>
+                                    Emotional balance & inner peace
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BENEFIT 6 -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon"><i class="fa-solid fa-lungs" aria-hidden="true"></i></div>
+
+                        <div>
+
+                            <h3>
+                                Breath & Energy
+                            </h3>
+
+                            <ul>
+
+                                <li>
+                                    Better breathing & lung capacity
+                                </li>
+
+                                <li>
+                                    Sound healing & meditation
+                                </li>
+
+                                <li>
+                                    Boost natural energy & vitality
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STATS
+                ================================================== -->
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-item">
+
+                        <strong>
+                            250+
+                        </strong>
+
+                        <span>
+                            Women & Kids
+                            <br>
+                            Joined
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="stat-item">
+
+                        <strong>
+                            50+
+                        </strong>
+
+                        <span>
+                            5-Star
+                            <br>
+                            Reviews
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="stat-item">
+
+                        <strong>
+                            1000+
+                        </strong>
+
+                        <span>
+                            Hours of Yoga
+                            <br>
+                            Sessions Conducted
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="stat-item">
+
+                        <strong>
+                            Growing
+                        </strong>
+
+                        <span>
+                            Community of
+                            <br>
+                            Healthy & Happy You
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+<!-- =================================================
              ABOUT / INSTRUCTORS
         ================================================== -->
 
@@ -908,400 +1272,12 @@
 
         </section>
 
-
-
-        <!-- =================================================
-             BENEFITS
-        ================================================== -->
-
-        <section id="benefits"
-                 class="benefits-section section">
-
-            <div class="container">
-
-
-                <div class="section-title">
-
-                    <span class="section-label">
-                        WELLNESS BENEFITS
-                    </span>
-
-                    <h2>
-                        Benefits You'll Feel,
-                        <br>
-                        Inside & Out
-                    </h2>
-
-                    <p>
-                        Yoga. Strength. Balance.
-                        A better you, every day.
-                    </p>
-
-                    <div class="section-flower">
-                        ♧
-                    </div>
-
-                </div>
-
-
-
-                <div class="benefits-grid">
-
-
-                    <!-- BENEFIT 1 -->
-
-                    <article class="benefit-card">
-
-                        <div class="benefit-icon">
-                            ♧
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Daily Consistency
-                            </h3>
-
-                            <ul>
-
-                                <li>
-                                    Build a sustainable routine
-                                </li>
-
-                                <li>
-                                    Stay motivated & disciplined
-                                </li>
-
-                                <li>
-                                    Create a lifestyle that lasts
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- BENEFIT 2 -->
-
-                    <article class="benefit-card">
-
-                        <div class="benefit-icon">
-                            ◉
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Optimal Weight
-                            </h3>
-
-                            <ul>
-
-                                <li>
-                                    Personalized diet & yoga plans
-                                </li>
-
-                                <li>
-                                    Healthy weight loss the right way
-                                </li>
-
-                                <li>
-                                    Feel light, confident & energetic
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- BENEFIT 3 -->
-
-                    <article class="benefit-card">
-
-                        <div class="benefit-icon">
-                            ♢
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Physical Strength
-                            </h3>
-
-                            <ul>
-
-                                <li>
-                                    Improve stamina & endurance
-                                </li>
-
-                                <li>
-                                    Stronger muscles & better posture
-                                </li>
-
-                                <li>
-                                    Injury prevention & body stability
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- BENEFIT 4 -->
-
-                    <article class="benefit-card">
-
-                        <div class="benefit-icon">
-                            ♡
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Better Immunity
-                            </h3>
-
-                            <ul>
-
-                                <li>
-                                    Strengthen your natural defense
-                                </li>
-
-                                <li>
-                                    Improve gut health & digestion
-                                </li>
-
-                                <li>
-                                    Stay active, stay disease-free
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- BENEFIT 5 -->
-
-                    <article class="benefit-card">
-
-                        <div class="benefit-icon">
-                            ✿
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Low Stress
-                            </h3>
-
-                            <ul>
-
-                                <li>
-                                    Calm your mind & reduce anxiety
-                                </li>
-
-                                <li>
-                                    Better sleep & relaxation
-                                </li>
-
-                                <li>
-                                    Emotional balance & inner peace
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-
-                    <!-- BENEFIT 6 -->
-
-                    <article class="benefit-card">
-
-                        <div class="benefit-icon">
-                            ≋
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Breath & Energy
-                            </h3>
-
-                            <ul>
-
-                                <li>
-                                    Better breathing & lung capacity
-                                </li>
-
-                                <li>
-                                    Sound healing & meditation
-                                </li>
-
-                                <li>
-                                    Boost natural energy & vitality
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     STATS
-                ================================================== -->
-
-                <div class="stats-grid">
-
-
-                    <div class="stat-item">
-
-                        <strong>
-                            250+
-                        </strong>
-
-                        <span>
-                            Women & Kids
-                            <br>
-                            Joined
-                        </span>
-
-                    </div>
-
-
-
-                    <div class="stat-item">
-
-                        <strong>
-                            50+
-                        </strong>
-
-                        <span>
-                            5-Star
-                            <br>
-                            Reviews
-                        </span>
-
-                    </div>
-
-
-
-                    <div class="stat-item">
-
-                        <strong>
-                            1000+
-                        </strong>
-
-                        <span>
-                            Hours of Yoga
-                            <br>
-                            Sessions Conducted
-                        </span>
-
-                    </div>
-
-
-
-                    <div class="stat-item">
-
-                        <strong>
-                            Growing
-                        </strong>
-
-                        <span>
-                            Community of
-                            <br>
-                            Healthy & Happy You
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             COMMUNITY CTA
-        ================================================== -->
-
-        <section class="community-cta">
-
-            <div class="container">
-
-                <div class="community-cta-inner">
-
-
-                    <div class="community-icon">
-                        ♧
-                    </div>
-
-
-                    <div class="community-content">
-
-                        <h2>
-                            Transform your body.
-                            Elevate your mind.
-                            Enrich your life.
-                        </h2>
-
-                        <p>
-                            Join YogMalti and experience the change every day.
-                        </p>
-
-                    </div>
-
-
-                    <a href="#contact"
-                       class="btn btn-light">
-
-                        Join YogMalti Community
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             TESTIMONIALS
-        ================================================== -->
-
 <section class="testimonials-section section" id="testimonials">
 
     <div class="container">
 
         <div class="section-title">
+
             <span class="section-label">
                 COMMUNITY LOVE
             </span>
@@ -1310,9 +1286,6 @@
                 What Our Community Says
             </h2>
 
-            <div class="section-flower">
-                ♧
-            </div>
         </div>
 
         <div class="testimonial-wrapper">
@@ -1321,64 +1294,137 @@
                 class="testimonial-arrow testimonial-prev"
                 type="button"
                 aria-label="Previous testimonial">
-                ‹
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             </button>
+
 
             <div class="testimonial-grid" id="testimonialSlider">
 
+
                 <!-- TESTIMONIAL 1 -->
                 <article class="testimonial-card">
-                    <div class="quote-mark">“</div>
+
+                    <div class="quote-mark">
+                        <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+                    </div>
 
                     <p>
-                        YogMalti has transformed my body and mind.
-                        The sessions are practical, positive and truly
-                        life-changing!
+                        It's being one year I have enrolled with Kriti's
+                        yoga classes. Before joining I had sciatic pain in
+                        legs and with her expertise it was relieved in
+                        3 months. Also she is very friendly and discusses
+                        your health issues in detail before suggesting.
                     </p>
 
                     <div class="testimonial-author">
-                        <strong>Priya Sharma</strong>
+                        <strong>Pratiksha Wasnik</strong>
                     </div>
+
                 </article>
 
 
                 <!-- TESTIMONIAL 2 -->
                 <article class="testimonial-card">
-                    <div class="quote-mark">“</div>
+
+                    <div class="quote-mark">
+                        <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+                    </div>
 
                     <p>
-                        The diet plans and strength training helped me
-                        lose 8 kgs in 3 months. I feel stronger and
-                        more confident.
+                        I've been practicing yoga with Kriti for months
+                        and I can't recommend her enough. The classes
+                        perfectly balance challenging asanas with calming
+                        meditation, leaving me feeling both physically
+                        strong and mentally centered. They have an incredible
+                        ability to make beginners feel welcome while still
+                        encouraging experienced yogis to deepen their practice.
                     </p>
 
                     <div class="testimonial-author">
-                        <strong>Neha Verma</strong>
+                        <strong>Shweta Patil</strong>
                     </div>
+
                 </article>
 
 
                 <!-- TESTIMONIAL 3 -->
                 <article class="testimonial-card">
-                    <div class="quote-mark">“</div>
+
+                    <div class="quote-mark">
+                        <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+                    </div>
 
                     <p>
-                        My kids love the yoga sessions. They are more
-                        active, focused and happy now!
+                        Sharing my personal experience with Kriti...
+                        I've had such a wonderful experience learning from
+                        Kriti. The classes are thoughtfully planned, easy to
+                        follow, and suitable for all levels. The calm energy,
+                        clear instructions, and personal encouragement make
+                        every session special. I've noticed improvements not
+                        only in my flexibility and strength but also in my
+                        mental clarity and stress levels. Highly recommended!
                     </p>
 
                     <div class="testimonial-author">
-                        <strong>Anjali Mehra</strong>
+                        <strong>Ashwini</strong>
                     </div>
+
                 </article>
 
+
+                <!-- TESTIMONIAL 4 -->
+                <article class="testimonial-card">
+
+                    <div class="quote-mark">
+                        <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+                    </div>
+
+                    <p>
+                        Thank you Kriti for your dedication, encouragement,
+                        and calm energy in every session. We are grateful for
+                        your time, effort, and the peaceful space you create
+                        for us every day. I would definitely recommend her to
+                        everyone looking for improving overall health and
+                        well-being.
+                    </p>
+
+                    <div class="testimonial-author">
+                        <strong>Sonal Saumya</strong>
+                    </div>
+
+                </article>
+
+
+                <!-- TESTIMONIAL 5 -->
+                <article class="testimonial-card">
+
+                    <div class="quote-mark">
+                        <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+                    </div>
+
+                    <p>
+                        I joined her yoga batch one year ago, and the results
+                        have been amazing. My BP issue has healed, and my
+                        overall health has improved greatly. She is dedicated,
+                        knowledgeable, and I strongly recommend her to our
+                        society.
+                    </p>
+
+                    <div class="testimonial-author">
+                        <strong>Sonika</strong>
+                    </div>
+
+                </article>
+
+
             </div>
+
 
             <button
                 class="testimonial-arrow testimonial-next"
                 type="button"
                 aria-label="Next testimonial">
-                ›
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </button>
 
         </div>
@@ -1386,41 +1432,16 @@
     </div>
 
 </section>
-
-
-
-
-        <!-- =================================================
-             IMAGE GALLERY
+<!-- =================================================
+             TESTIMONIALS
         ================================================== -->
-        <section class="gallery-section section" id="gallery" aria-label="YogMalti image gallery">
-            <div class="container">
-                <div class="section-title">
-                    <span class="section-label">YOGMALTI MOMENTS</span>
-                    <h2>Our Wellness Community</h2>
-                </div>
-            </div>
-            <div class="gallery-marquee" tabindex="0" aria-label="Scrolling gallery of YogMalti photos">
-                <div class="gallery-track">
-                    <div class="gallery-item"><img src="assets/images/gallery-01.png" alt="YogMalti yoga session" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-02.png" alt="YogMalti wellness activity" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-03.png" alt="YogMalti community session" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-04.png" alt="YogMalti yoga practice" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-05.png" alt="YogMalti wellness community" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-06.png" alt="YogMalti group session" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-07.png" alt="YogMalti yoga and wellness" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-08.jpg" alt="YogMalti healthy living" loading="lazy"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-01.png" alt="YogMalti yoga session" loading="lazy" aria-hidden="true"> </div>
-                    <div class="gallery-item"><img src="assets/images/gallery-02.png" alt="YogMalti wellness activity" loading="lazy" aria-hidden="true"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-03.png" alt="YogMalti community session" loading="lazy" aria-hidden="true"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-04.png" alt="YogMalti yoga practice" loading="lazy" aria-hidden="true"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-05.png" alt="YogMalti wellness community" loading="lazy" aria-hidden="true"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-06.png" alt="YogMalti group session" loading="lazy" aria-hidden="true"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-07.png" alt="YogMalti yoga and wellness" loading="lazy" aria-hidden="true"></div>
-                    <div class="gallery-item"><img src="assets/images/gallery-08.jpg" alt="YogMalti healthy living" loading="lazy" aria-hidden="true"></div>
-                </div>
-            </div>
-            </section>
+
+
+
+
+
+
+        
 
         <!-- =================================================
              FAQ
@@ -1686,7 +1707,7 @@
                                 type="submit"
                                 class="join-submit">
 
-                                Join YogMalti Community
+                                Connect with Us
 
                                 <span>
                                     →
@@ -1708,11 +1729,8 @@
                                 target="_blank"
                                 rel="noopener">
 
-                                <span>
-                                    ◉
-                                </span>
-
-                                Join our WhatsApp community
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                                Message us on WhatsApp
                                 for updates & support
 
                             </a>
@@ -1739,9 +1757,7 @@
 
                         <div class="location-info">
 
-                            <span class="location-icon">
-                                ♧
-                            </span>
+                            <span class="location-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
 
                             <div>
 
@@ -1760,7 +1776,7 @@
 
 
                         <a
-                            href="https://www.google.com/maps/search/?api=1&query=YogMalti+RR+Nagar+Bengaluru+Karnataka+560098"
+                            href="https://share.google/6BslGmWM1bwB59X26"
                             target="_blank"
                             rel="noopener"
                             class="map-button">
@@ -1771,44 +1787,9 @@
 
 
 
-                        <!-- INSTAGRAM -->
-
-                        <div class="follow-us">
-
-                            <span class="section-label">
-                                SOCIAL
-                            </span>
-
-                            <h3>
-                                Follow Us
-                            </h3>
-
-
-                            <a
-                                href="https://www.instagram.com/yogmalti_community/"
-                                target="_blank"
-                                rel="noopener"
-                                class="instagram-link">
-
-                                <span>
-                                    ◎
-                                </span>
-
-                                @yogmalti_community
-
-                            </a>
-
-                        </div>
-
-
-
                         <!-- QUOTE -->
 
-                        <div class="contact-quote">
-
-                            <span>
-                                ♧
-                            </span>
+                        <div class="contact-quote"><i class="fa-solid fa-spa" aria-hidden="true"></i>
 
                             <p>
 
@@ -1826,56 +1807,7 @@
             </div>
 
         </section>
-
-
-
-        <!-- =================================================
-             FINAL CTA
-        ================================================== -->
-
-        <section class="final-cta">
-
-            <div class="container">
-
-                <div class="final-cta-content">
-
-                    <div class="final-cta-icon">
-                        ♧
-                    </div>
-
-                    <div>
-
-                        <h2>
-                            Transform your body.
-                            Elevate your mind.
-                            Enrich your life.
-                        </h2>
-
-                        <p>
-                            Join YogMalti and experience the change every day.
-                        </p>
-
-                    </div>
-
-
-                    <a href="#contact"
-                       class="btn btn-white">
-
-                        Join YogMalti Community
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+</main>
 
 
 
@@ -1898,11 +1830,9 @@
                     <a href="#home">
 
                         <img
-                            src="assets/images/logo.png"
+                            src="assets/logo.png"
                             alt="YogMalti"
-                            width="180"
-                            height="65"
-                            loading="lazy">
+                            >
 
                     </a>
 
@@ -1922,9 +1852,7 @@
 
                 <div class="footer-item">
 
-                    <div class="footer-icon">
-                        ♧
-                    </div>
+                    <div class="footer-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
 
                     <div>
 
@@ -1944,42 +1872,11 @@
 
 
 
-                <!-- INSTAGRAM -->
-
-                <div class="footer-item">
-
-                    <div class="footer-icon">
-                        ◎
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            @yogmalti_community
-                        </strong>
-
-                        <a
-                            href="https://www.instagram.com/yogmalti_community/"
-                            target="_blank"
-                            rel="noopener">
-
-                            Follow us on Instagram
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
                 <!-- GOOGLE MAP -->
 
                 <div class="footer-item">
 
-                    <div class="footer-icon">
-                        ◉
-                    </div>
+                    <div class="footer-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div>
 
                     <div>
 
@@ -1988,7 +1885,7 @@
                         </strong>
 
                         <a
-                            href="https://www.google.com/maps/search/?api=1&query=YogMalti+RR+Nagar+Bengaluru+Karnataka+560098"
+                            href="https://share.google/6BslGmWM1bwB59X26"
                             target="_blank"
                             rel="noopener">
 
@@ -2016,17 +1913,18 @@
                     All Rights Reserved.
 
                 </p>
+                <p>
+                        Designed by
+                
+
+                    <a class="footer-link" href="https://www.techdea.in/">
+                         TechDea 
+                    </a>
 
 
                 <div class="footer-links">
 
-                    <a href="#">
-                        Privacy Policy
-                    </a>
-
-                    <a href="#">
-                        Terms & Conditions
-                    </a>
+                    
 
                 </div>
 
@@ -2044,6 +1942,17 @@
 
     <script src="script.js"></script>
 
+
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/919004012757"
+       class="floating-whatsapp"
+       target="_blank"
+       rel="noopener"
+       aria-label="Chat with YogMalti on WhatsApp"
+       title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
 
 </body>
 

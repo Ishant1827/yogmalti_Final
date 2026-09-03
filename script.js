@@ -1,764 +1,346 @@
 document.addEventListener("DOMContentLoaded", () => {
-  "use strict";
 
-  /* =====================================================
-     YOGMALTI WHATSAPP NUMBER
-  ===================================================== */
+    /* =========================================
+       MOBILE NAVIGATION
+    ========================================= */
 
-  const WHATSAPP_NUMBER = "919004012757";
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navbarMenu = document.querySelector(".navbar-menu");
 
-
-  /* =====================================================
-     NAVBAR
-  ===================================================== */
-
-  const header = document.querySelector(".site-header");
-
-  const updateNavbar = () => {
-    if (!header) return;
-
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-      header.classList.add("is-compact");
-    } else {
-      header.classList.remove("scrolled");
-      header.classList.remove("is-compact");
-    }
-  };
-
-  updateNavbar();
-
-  window.addEventListener("scroll", updateNavbar, {
-    passive: true
-  });
-
-
-  /* =====================================================
-     SMOOTH SCROLL
-  ===================================================== */
-
-  const navLinks = document.querySelectorAll(
-    'a[href^="#"]'
-  );
-
-  navLinks.forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-      const targetId = link.getAttribute("href");
-
-      if (
-        !targetId ||
-        targetId === "#" ||
-        targetId.length < 2
-      ) {
-        return;
-      }
-
-      const target = document.querySelector(targetId);
-
-      if (!target) return;
-
-      event.preventDefault();
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-      try {
-        history.replaceState(
-          null,
-          "",
-          targetId
-        );
-      } catch (error) {
-        // Ignore browser history errors
-      }
-
-    });
-
-  });
-
-
-  /* =====================================================
-     ACTIVE NAVBAR LINK
-  ===================================================== */
-
-  const sections = document.querySelectorAll(
-    "main section[id]"
-  );
-
-  if (
-    sections.length &&
-    "IntersectionObserver" in window
-  ) {
-
-    const sectionObserver =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach((entry) => {
-
-            if (!entry.isIntersecting) return;
-
-            navLinks.forEach((link) => {
-
-              const href =
-                link.getAttribute("href");
-
-              link.classList.toggle(
-                "active",
-                href ===
-                  "#" + entry.target.id
-              );
-
-            });
-
-          });
-
-        },
-        {
-          rootMargin:
-            "-25% 0px -65% 0px",
-          threshold: 0
-        }
-      );
-
-    sections.forEach((section) => {
-      sectionObserver.observe(section);
-    });
-
-  }
-
-
-  /* =====================================================
-     TESTIMONIAL SLIDER
-  ===================================================== */
-
-  const testimonialSlider =
-    document.getElementById(
-      "testimonialSlider"
-    );
-
-  const previousButton =
-    document.querySelector(
-      ".testimonial-prev"
-    );
-
-  const nextButton =
-    document.querySelector(
-      ".testimonial-next"
-    );
-
-  if (testimonialSlider) {
-
-    const cards = Array.from(
-      testimonialSlider.children
-    );
-
-    let currentIndex = 0;
-    let sliderTimer = null;
-
-
-    const getVisibleCards = () => {
-
-      if (window.innerWidth <= 700) {
-        return 1;
-      }
-
-      if (window.innerWidth <= 1050) {
-        return 2;
-      }
-
-      return 3;
-
-    };
-
-
-    const moveSlider = (index) => {
-
-      if (!cards.length) return;
-
-      const visibleCards =
-        getVisibleCards();
-
-      const maxIndex = Math.max(
-        0,
-        cards.length - visibleCards
-      );
-
-      currentIndex = Math.max(
-        0,
-        Math.min(index, maxIndex)
-      );
-
-      const targetCard =
-        cards[currentIndex];
-
-      if (!targetCard) return;
-
-      testimonialSlider.scrollTo({
-        left: targetCard.offsetLeft,
-        behavior: "smooth"
-      });
-
-    };
-
-
-    const startSlider = () => {
-
-      clearInterval(sliderTimer);
-
-      if (
-        cards.length <=
-        getVisibleCards()
-      ) {
-        return;
-      }
-
-      sliderTimer = setInterval(() => {
-
-        const maxIndex = Math.max(
-          0,
-          cards.length -
-            getVisibleCards()
-        );
-
-        if (
-          currentIndex >= maxIndex
-        ) {
-          currentIndex = 0;
-        } else {
-          currentIndex++;
-        }
-
-        moveSlider(currentIndex);
-
-      }, 5000);
-
-    };
-
-
-    const restartSlider = () => {
-      startSlider();
-    };
-
-
-    if (nextButton) {
-
-      nextButton.addEventListener(
-        "click",
-        () => {
-
-          moveSlider(
-            currentIndex + 1
-          );
-
-          restartSlider();
-
-        }
-      );
-
-    }
-
-
-    if (previousButton) {
-
-      previousButton.addEventListener(
-        "click",
-        () => {
-
-          moveSlider(
-            currentIndex - 1
-          );
-
-          restartSlider();
-
-        }
-      );
-
-    }
-
-
-    testimonialSlider.addEventListener(
-      "mouseenter",
-      () => {
-        clearInterval(sliderTimer);
-      }
-    );
-
-
-    testimonialSlider.addEventListener(
-      "mouseleave",
-      () => {
-        startSlider();
-      }
-    );
-
-
-    testimonialSlider.addEventListener(
-      "touchstart",
-      () => {
-        clearInterval(sliderTimer);
-      },
-      { passive: true }
-    );
-
-
-    testimonialSlider.addEventListener(
-      "touchend",
-      () => {
-        startSlider();
-      },
-      { passive: true }
-    );
-
-
-    window.addEventListener(
-      "resize",
-      () => {
-
-        currentIndex = 0;
-
-        moveSlider(0);
-
-        startSlider();
-
-      }
-    );
-
-
-    startSlider();
-
-  }
-
-
-  /* =====================================================
-     IMAGE GALLERY
-     Automatic slow marquee.
-  ===================================================== */
-
-  const galleryTrack =
-    document.querySelector(
-      ".gallery-track"
-    );
-
-  if (galleryTrack) {
-
-    let galleryAnimation;
-
-    const startGallery = () => {
-
-      galleryTrack.style.animationPlayState =
-        "running";
-
-    };
-
-
-    const stopGallery = () => {
-
-      galleryTrack.style.animationPlayState =
-        "paused";
-
-    };
-
-
-    galleryTrack.addEventListener(
-      "mouseenter",
-      stopGallery
-    );
-
-    galleryTrack.addEventListener(
-      "mouseleave",
-      startGallery
-    );
-
-    galleryTrack.addEventListener(
-      "touchstart",
-      stopGallery,
-      { passive: true }
-    );
-
-    galleryTrack.addEventListener(
-      "touchend",
-      startGallery,
-      { passive: true }
-    );
-
-  }
-
-
-  /* =====================================================
-     WHATSAPP FORM
-  ===================================================== */
-
-  const form =
-    document.getElementById(
-      "joinForm"
-    );
-
-  const formMessage =
-    document.getElementById(
-      "formMessage"
-    );
-
-
-  const showFormMessage = (
-    message,
-    type = "success"
-  ) => {
-
-    if (!formMessage) return;
-
-    formMessage.textContent = message;
-
-    formMessage.className =
-      "form-message " + type;
-
-  };
-
-
-  const validEmail = (email) => {
-
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      .test(email);
-
-  };
-
-
-  if (form) {
-
-    form.addEventListener(
-      "submit",
-      (event) => {
-
-        event.preventDefault();
-
-
-        const nameInput =
-          document.getElementById(
-            "fullName"
-          );
-
-        const emailInput =
-          document.getElementById(
-            "email"
-          );
-
-        const phoneInput =
-          document.getElementById(
-            "phone"
-          );
-
-        const interestInput =
-          document.getElementById(
-            "interest"
-          );
-
-
-        const name =
-          nameInput?.value.trim() || "";
-
-        const email =
-          emailInput?.value.trim() || "";
-
-        const phone =
-          phoneInput?.value.trim() || "";
-
-        const interest =
-          interestInput?.value || "";
-
-
-        /* Validation */
-
-        if (
-          !name ||
-          !email ||
-          !phone ||
-          !interest
-        ) {
-
-          showFormMessage(
-            "Please fill all required fields.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        if (!validEmail(email)) {
-
-          showFormMessage(
-            "Please enter a valid email address.",
-            "error"
-          );
-
-          emailInput?.focus();
-
-          return;
-
-        }
-
-
-        if (
-          WHATSAPP_NUMBER.includes("X")
-        ) {
-
-          showFormMessage(
-            "Please add the client's WhatsApp number in script.js.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        /* Get selected program name */
-
-        let interestName =
-          interest;
-
-        if (
-          interestInput &&
-          interestInput.selectedOptions &&
-          interestInput.selectedOptions[0]
-        ) {
-
-          interestName =
-            interestInput
-              .selectedOptions[0]
-              .textContent
-              .trim();
-
-        }
-
-
-        /* Clean phone */
-
-        const cleanPhone =
-          phone.replace(
-            /[^\d+\-\s()]/g,
-            ""
-          );
-
-
-        /* =================================================
-           WHATSAPP MESSAGE
-        ================================================= */
-
-        const message =
-`Hello YogMalti,
-
-I want to join YogMalti Community.
-
-Name: ${name}
-Phone: ${cleanPhone}
-Email: ${email}
-Interested in: ${interestName}
-
-Please share the next steps.`;
-
-
-        const whatsappNumber =
-          WHATSAPP_NUMBER.replace(
-            /\D/g,
-            ""
-          );
-
-
-        const whatsappURL =
-          "https://wa.me/" +
-          whatsappNumber +
-          "?text=" +
-          encodeURIComponent(message);
-
-
-        showFormMessage(
-          "Opening WhatsApp...",
-          "success"
-        );
-
-
-        /* Open WhatsApp */
-
-        setTimeout(() => {
-
-          window.open(
-            whatsappURL,
-            "_blank",
-            "noopener,noreferrer"
-          );
-
-        }, 200);
-
-      }
-    );
-
-  }
-
-
-  /* =====================================================
-     FAQ ACCORDION
-  ===================================================== */
-
-  const faqItems =
-    document.querySelectorAll(
-      ".faq-list details"
-    );
-
-  faqItems.forEach((item) => {
-
-    item.addEventListener(
-      "toggle",
-      () => {
-
-        if (!item.open) return;
-
-        faqItems.forEach((otherItem) => {
-
-          if (
-            otherItem !== item
-          ) {
-
-            otherItem.removeAttribute(
-              "open"
-            );
-
-          }
-
+    if (menuToggle && navbarMenu) {
+        menuToggle.addEventListener("click", () => {
+            navbarMenu.classList.toggle("active");
+            menuToggle.classList.toggle("active");
         });
 
-      }
-    );
-
-  });
-
-
-  /* =====================================================
-     GALLERY IMAGE FALLBACK
-  ===================================================== */
-
-  const galleryImages =
-    document.querySelectorAll(
-      ".gallery-item img"
-    );
-
-  galleryImages.forEach((image) => {
-
-    image.addEventListener(
-      "error",
-      () => {
-
-        image.classList.add(
-          "image-error"
-        );
-
-      }
-    );
-
-  });
+        document.querySelectorAll(".navbar-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navbarMenu.classList.remove("active");
+                menuToggle.classList.remove("active");
+            });
+        });
+    }
 
 
-  /* =====================================================
-     SCROLL REVEAL
-  ===================================================== */
+    /* =========================================
+       TESTIMONIAL CAROUSEL
+    ========================================= */
 
-  const revealElements =
-    document.querySelectorAll(
-      [
-        ".program-card",
-        ".expert-card",
-        ".benefit-card",
-        ".testimonial-card",
-        ".gallery-item",
-        ".stat-item"
-      ].join(",")
-    );
+    const testimonialTrack =
+        document.querySelector(".testimonials-track");
 
+    const testimonialCards =
+        document.querySelectorAll(".testimonial-card");
 
-  if (
-    revealElements.length &&
-    "IntersectionObserver" in window
-  ) {
+    const testimonialPrev =
+        document.querySelector(".testimonial-prev");
 
-    const revealObserver =
-      new IntersectionObserver(
-        (entries, observer) => {
+    const testimonialNext =
+        document.querySelector(".testimonial-next");
 
-          entries.forEach((entry) => {
+    let testimonialIndex = 0;
 
-            if (
-              !entry.isIntersecting
-            ) {
-              return;
+    function getCardsPerView() {
+        if (window.innerWidth <= 760) {
+            return 1;
+        }
+
+        if (window.innerWidth <= 1100) {
+            return 2;
+        }
+
+        return 3;
+    }
+
+    function updateTestimonials() {
+
+        if (!testimonialTrack || testimonialCards.length === 0) {
+            return;
+        }
+
+        const cardsPerView = getCardsPerView();
+
+        const maxIndex =
+            Math.max(0, testimonialCards.length - cardsPerView);
+
+        testimonialIndex =
+            Math.min(testimonialIndex, maxIndex);
+
+        const cardWidth =
+            testimonialCards[0].getBoundingClientRect().width;
+
+        const gap = 24;
+
+        testimonialTrack.style.transform =
+            `translateX(-${testimonialIndex * (cardWidth + gap)}px)`;
+    }
+
+    if (testimonialNext) {
+        testimonialNext.addEventListener("click", () => {
+
+            const cardsPerView = getCardsPerView();
+
+            const maxIndex =
+                Math.max(0, testimonialCards.length - cardsPerView);
+
+            if (testimonialIndex < maxIndex) {
+                testimonialIndex++;
+            } else {
+                testimonialIndex = 0;
             }
 
-            entry.target.classList.add(
-              "is-visible"
-            );
+            updateTestimonials();
+        });
+    }
 
-            observer.unobserve(
-              entry.target
-            );
+    if (testimonialPrev) {
+        testimonialPrev.addEventListener("click", () => {
 
-          });
+            const cardsPerView = getCardsPerView();
 
-        },
-        {
-          threshold: 0.08
-        }
-      );
+            const maxIndex =
+                Math.max(0, testimonialCards.length - cardsPerView);
+
+            if (testimonialIndex > 0) {
+                testimonialIndex--;
+            } else {
+                testimonialIndex = maxIndex;
+            }
+
+            updateTestimonials();
+        });
+    }
+
+    window.addEventListener("resize", updateTestimonials);
+
+    updateTestimonials();
 
 
-    revealElements.forEach((element) => {
+    /* =========================================
+       FAQ ACCORDION
+    ========================================= */
 
-      revealObserver.observe(
-        element
-      );
+    const faqItems = document.querySelectorAll(".faq-item");
 
+    faqItems.forEach(item => {
+
+        const question =
+            item.querySelector(".faq-question");
+
+        if (!question) return;
+
+        question.addEventListener("click", () => {
+
+            const isActive =
+                item.classList.contains("active");
+
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove("active");
+            });
+
+            if (!isActive) {
+                item.classList.add("active");
+            }
+        });
     });
 
-  }
+
+    /* =========================================
+       SMOOTH SCROLL
+    ========================================= */
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+        link.addEventListener("click", function (e) {
+
+            const targetId =
+                this.getAttribute("href");
+
+            if (!targetId || targetId === "#") {
+                return;
+            }
+
+            const target =
+                document.querySelector(targetId);
+
+            if (target) {
+                e.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
 
 
-  /* =====================================================
-     CURRENT YEAR
-  ===================================================== */
+    /* =========================================
+       JOIN NOW / REGISTER BUTTON
+    ========================================= */
 
-  const currentYear =
-    document.getElementById(
-      "currentYear"
+    const joinButtons = document.querySelectorAll(
+        ".join-btn, .join-now-btn, .register-btn, .sticky-register"
     );
 
-  if (currentYear) {
+    joinButtons.forEach(button => {
 
-    currentYear.textContent =
-      new Date().getFullYear();
+        button.addEventListener("click", () => {
 
-  }
+            const contactSection =
+                document.querySelector("#contact");
+
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
 
 
-  /* =====================================================
-     ESCAPE KEY
-  ===================================================== */
+    /* =========================================
+       CONTACT / JOIN FORM
+    ========================================= */
 
-  document.addEventListener(
-    "keydown",
-    (event) => {
+    const contactForm =
+        document.querySelector("#contactForm");
 
-      if (
-        event.key === "Escape"
-      ) {
+    if (contactForm) {
 
-        document.activeElement?.blur();
+        contactForm.addEventListener("submit", function (e) {
 
-      }
+            e.preventDefault();
 
+            const name =
+                document.querySelector("#name")?.value.trim() || "";
+
+            const phone =
+                document.querySelector("#phone")?.value.trim() || "";
+
+            const email =
+                document.querySelector("#email")?.value.trim() || "";
+
+            const message =
+                document.querySelector("#message")?.value.trim() || "";
+
+            if (!name || !phone) {
+                alert("Please enter your name and phone number.");
+                return;
+            }
+
+            const whatsappNumber = "919369907885";
+
+            const whatsappMessage =
+                `Namaste YogMalti!%0A%0A` +
+                `I want to join YogMalti.%0A%0A` +
+                `Name: ${encodeURIComponent(name)}%0A` +
+                `Phone: ${encodeURIComponent(phone)}%0A` +
+                `Email: ${encodeURIComponent(email)}%0A` +
+                `Message: ${encodeURIComponent(message)}`;
+
+            const whatsappURL =
+                `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+            window.open(whatsappURL, "_blank");
+
+            contactForm.reset();
+        });
     }
-  );
+
+
+    /* =========================================
+       CURRENT YEAR
+    ========================================= */
+
+    const yearElements =
+        document.querySelectorAll(".current-year");
+
+    yearElements.forEach(element => {
+        element.textContent = new Date().getFullYear();
+    });
+
+
+    /* =========================================
+       GALLERY PAUSE ON HOVER
+    ========================================= */
+
+    const galleryTrack =
+        document.querySelector(".gallery-track");
+
+    if (galleryTrack) {
+
+        galleryTrack.addEventListener("mouseenter", () => {
+            galleryTrack.style.animationPlayState = "paused";
+        });
+
+        galleryTrack.addEventListener("mouseleave", () => {
+            galleryTrack.style.animationPlayState = "running";
+        });
+    }
+
+
+    /* =========================================
+       ACTIVE FAQ ACCESSIBILITY
+    ========================================= */
+
+    faqItems.forEach(item => {
+
+        const question =
+            item.querySelector(".faq-question");
+
+        if (!question) return;
+
+        question.setAttribute("role", "button");
+        question.setAttribute("tabindex", "0");
+
+        question.addEventListener("keydown", e => {
+
+            if (e.key === "Enter" || e.key === " ") {
+
+                e.preventDefault();
+                question.click();
+
+            }
+        });
+    });
+
+
+    /* =========================================
+       SCROLL REVEAL
+    ========================================= */
+
+    const revealElements = document.querySelectorAll(
+        ".program-card, .benefit-card, .stat-card, " +
+        ".about-content, .expert-card, .testimonial-card, " +
+        ".faq-item, .contact-card"
+    );
+
+    if ("IntersectionObserver" in window) {
+
+        const observer = new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
 
 });
