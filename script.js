@@ -3,16 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
      YOGMALTI WHATSAPP NUMBER
-     Replace with client's WhatsApp number.
-     Example: 919876543210
   ===================================================== */
 
-  const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+  const WHATSAPP_NUMBER = "919004012757";
 
 
   /* =====================================================
      NAVBAR
-     Navbar automatically becomes compact while scrolling.
   ===================================================== */
 
   const header = document.querySelector(".site-header");
