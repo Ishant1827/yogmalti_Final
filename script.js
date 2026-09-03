@@ -1,1149 +1,767 @@
-
-/* =========================================================
-   YOGMALTI
-   PREMIUM YOGA & WELLNESS WEBSITE
-   script.js
-========================================================= */
-
-"use strict";
-
-
-/* =========================================================
-   01. DOM READY
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
 
-    initMobileMenu();
+  /* =====================================================
+     YOGMALTI WHATSAPP NUMBER
+     Replace with client's WhatsApp number.
+     Example: 919876543210
+  ===================================================== */
 
-    initHeaderScroll();
-
-    initSmoothNavigation();
-
-    initActiveNavigation();
-
-    initTestimonialSlider();
-
-    initJoinForm();
-
-    initCurrentYear();
-
-    initScrollReveal();
-
-});
+  const WHATSAPP_NUMBER = "91XXXXXXXXXX";
 
 
-/* =========================================================
-   02. MOBILE NAVIGATION
-========================================================= */
+  /* =====================================================
+     NAVBAR
+     Navbar automatically becomes compact while scrolling.
+  ===================================================== */
 
-function initMobileMenu() {
+  const header = document.querySelector(".site-header");
 
-    const menuToggle =
-        document.querySelector(".menu-toggle");
+  const updateNavbar = () => {
+    if (!header) return;
 
-    const mobileMenu =
-        document.querySelector("#mobileMenu");
-
-    if (!menuToggle || !mobileMenu) {
-        return;
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+      header.classList.add("is-compact");
+    } else {
+      header.classList.remove("scrolled");
+      header.classList.remove("is-compact");
     }
+  };
+
+  updateNavbar();
+
+  window.addEventListener("scroll", updateNavbar, {
+    passive: true
+  });
 
 
-    menuToggle.addEventListener("click", () => {
+  /* =====================================================
+     SMOOTH SCROLL
+  ===================================================== */
 
-        const isOpen =
-            mobileMenu.classList.toggle("active");
+  const navLinks = document.querySelectorAll(
+    'a[href^="#"]'
+  );
 
-        menuToggle.setAttribute(
-            "aria-expanded",
-            String(isOpen)
+  navLinks.forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      const targetId = link.getAttribute("href");
+
+      if (
+        !targetId ||
+        targetId === "#" ||
+        targetId.length < 2
+      ) {
+        return;
+      }
+
+      const target = document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      try {
+        history.replaceState(
+          null,
+          "",
+          targetId
         );
-
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen
-                ? "Close menu"
-                : "Open menu"
-        );
+      } catch (error) {
+        // Ignore browser history errors
+      }
 
     });
 
+  });
 
-    /*
-        Close mobile menu after clicking
-        any navigation link
-    */
 
-    const mobileLinks =
-        mobileMenu.querySelectorAll("a");
+  /* =====================================================
+     ACTIVE NAVBAR LINK
+  ===================================================== */
 
-    mobileLinks.forEach(link => {
+  const sections = document.querySelectorAll(
+    "main section[id]"
+  );
 
-        link.addEventListener("click", () => {
+  if (
+    sections.length &&
+    "IntersectionObserver" in window
+  ) {
 
-            mobileMenu.classList.remove("active");
+    const sectionObserver =
+      new IntersectionObserver(
+        (entries) => {
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+          entries.forEach((entry) => {
 
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open menu"
-            );
+            if (!entry.isIntersecting) return;
 
-        });
+            navLinks.forEach((link) => {
 
-    });
-
-
-    /*
-        Close menu using Escape key
-    */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                mobileMenu.classList.contains("active")
-            ) {
-
-                mobileMenu.classList.remove(
-                    "active"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuToggle.focus();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   03. HEADER SCROLL EFFECT
-========================================================= */
-
-function initHeaderScroll() {
-
-    const header =
-        document.querySelector(".site-header");
-
-    if (!header) {
-        return;
-    }
-
-
-    const handleScroll = () => {
-
-        if (window.scrollY > 30) {
-
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
-        }
-
-    };
-
-
-    handleScroll();
-
-
-    window.addEventListener(
-        "scroll",
-        handleScroll,
-        {
-            passive: true
-        }
-    );
-
-}
-
-
-/* =========================================================
-   04. SMOOTH NAVIGATION
-========================================================= */
-
-function initSmoothNavigation() {
-
-    const links =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
-
-
-    links.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            event => {
-
-                const href =
-                    link.getAttribute("href");
-
-
-                if (
-                    !href ||
-                    href === "#"
-                ) {
-
-                    return;
-
-                }
-
-
-                const target =
-                    document.querySelector(href);
-
-
-                if (!target) {
-
-                    return;
-
-                }
-
-
-                event.preventDefault();
-
-
-                const header =
-                    document.querySelector(
-                        ".site-header"
-                    );
-
-
-                const headerHeight =
-                    header
-                        ? header.offsetHeight
-                        : 0;
-
-
-                const targetPosition =
-                    target.getBoundingClientRect().top +
-                    window.scrollY -
-                    headerHeight;
-
-
-                window.scrollTo({
-
-                    top: targetPosition,
-
-                    behavior: "smooth"
-
-                });
-
-
-                /*
-                    Update URL hash without
-                    jumping instantly
-                */
-
-                if (
-                    history.pushState
-                ) {
-
-                    history.pushState(
-                        null,
-                        "",
-                        href
-                    );
-
-                }
-
-            }
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   05. ACTIVE NAVIGATION
-========================================================= */
-
-function initActiveNavigation() {
-
-    const sections =
-        document.querySelectorAll(
-            "main section[id]"
-        );
-
-    const navLinks =
-        document.querySelectorAll(
-            ".nav-menu a"
-        );
-
-
-    if (
-        !sections.length ||
-        !navLinks.length
-    ) {
-
-        return;
-
-    }
-
-
-    const updateActiveLink = () => {
-
-        const scrollPosition =
-            window.scrollY + 150;
-
-
-        let currentSection = "";
-
-
-        sections.forEach(section => {
-
-            const sectionTop =
-                section.offsetTop;
-
-            const sectionHeight =
-                section.offsetHeight;
-
-
-            if (
-                scrollPosition >= sectionTop &&
-                scrollPosition <
-                    sectionTop + sectionHeight
-            ) {
-
-                currentSection =
-                    section.id;
-
-            }
-
-        });
-
-
-        navLinks.forEach(link => {
-
-            link.classList.remove(
-                "active"
-            );
-
-
-            const href =
+              const href =
                 link.getAttribute("href");
 
-
-            if (
+              link.classList.toggle(
+                "active",
                 href ===
-                `#${currentSection}`
-            ) {
+                  "#" + entry.target.id
+              );
 
-                link.classList.add(
-                    "active"
-                );
+            });
 
-            }
+          });
 
-        });
+        },
+        {
+          rootMargin:
+            "-25% 0px -65% 0px",
+          threshold: 0
+        }
+      );
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+
+  }
+
+
+  /* =====================================================
+     TESTIMONIAL SLIDER
+  ===================================================== */
+
+  const testimonialSlider =
+    document.getElementById(
+      "testimonialSlider"
+    );
+
+  const previousButton =
+    document.querySelector(
+      ".testimonial-prev"
+    );
+
+  const nextButton =
+    document.querySelector(
+      ".testimonial-next"
+    );
+
+  if (testimonialSlider) {
+
+    const cards = Array.from(
+      testimonialSlider.children
+    );
+
+    let currentIndex = 0;
+    let sliderTimer = null;
+
+
+    const getVisibleCards = () => {
+
+      if (window.innerWidth <= 700) {
+        return 1;
+      }
+
+      if (window.innerWidth <= 1050) {
+        return 2;
+      }
+
+      return 3;
 
     };
 
 
-    updateActiveLink();
+    const moveSlider = (index) => {
+
+      if (!cards.length) return;
+
+      const visibleCards =
+        getVisibleCards();
+
+      const maxIndex = Math.max(
+        0,
+        cards.length - visibleCards
+      );
+
+      currentIndex = Math.max(
+        0,
+        Math.min(index, maxIndex)
+      );
+
+      const targetCard =
+        cards[currentIndex];
+
+      if (!targetCard) return;
+
+      testimonialSlider.scrollTo({
+        left: targetCard.offsetLeft,
+        behavior: "smooth"
+      });
+
+    };
 
 
-    window.addEventListener(
-        "scroll",
-        updateActiveLink,
-        {
-            passive: true
-        }
-    );
+    const startSlider = () => {
 
-}
+      clearInterval(sliderTimer);
 
-
-/* =========================================================
-   06. TESTIMONIAL SLIDER
-========================================================= */
-
-function initTestimonialSlider() {
-
-    const slider =
-        document.querySelector(
-            "#testimonialSlider"
-        );
-
-
-    const prevButton =
-        document.querySelector(
-            ".testimonial-prev"
-        );
-
-
-    const nextButton =
-        document.querySelector(
-            ".testimonial-next"
-        );
-
-
-    if (
-        !slider ||
-        !prevButton ||
-        !nextButton
-    ) {
-
+      if (
+        cards.length <=
+        getVisibleCards()
+      ) {
         return;
+      }
 
-    }
+      sliderTimer = setInterval(() => {
 
-
-    const cards =
-        Array.from(
-            slider.children
+        const maxIndex = Math.max(
+          0,
+          cards.length -
+            getVisibleCards()
         );
 
-
-    if (!cards.length) {
-
-        return;
-
-    }
-
-
-    let currentIndex = 0;
-
-
-    /*
-        Desktop:
-        show cards normally.
-
-        Mobile:
-        show one card at a time.
-    */
-
-    function getVisibleCards() {
-
         if (
-            window.innerWidth <= 600
+          currentIndex >= maxIndex
         ) {
-
-            return 1;
-
-        }
-
-
-        if (
-            window.innerWidth <= 900
-        ) {
-
-            return 2;
-
-        }
-
-
-        return 3;
-
-    }
-
-
-    function updateSlider() {
-
-        const visibleCards =
-            getVisibleCards();
-
-
-        const maxIndex =
-            Math.max(
-                0,
-                cards.length -
-                visibleCards
-            );
-
-
-        if (
-            currentIndex >
-            maxIndex
-        ) {
-
-            currentIndex =
-                maxIndex;
-
-        }
-
-
-        /*
-            Only use slider movement
-            on smaller screens.
-        */
-
-        if (
-            window.innerWidth <= 900
-        ) {
-
-            const cardWidth =
-                cards[0].offsetWidth;
-
-
-            const gap =
-                parseFloat(
-                    getComputedStyle(
-                        slider
-                    ).gap
-                ) || 0;
-
-
-            const moveAmount =
-                currentIndex *
-                (cardWidth + gap);
-
-
-            slider.style.transform =
-                `translateX(-${moveAmount}px)`;
-
-
-            slider.style.transition =
-                "transform 0.45s ease";
-
-
+          currentIndex = 0;
         } else {
-
-            slider.style.transform =
-                "translateX(0)";
-
+          currentIndex++;
         }
 
+        moveSlider(currentIndex);
 
-        /*
-            Button state
-        */
+      }, 5000);
 
-        prevButton.disabled =
-            currentIndex === 0;
+    };
 
 
-        nextButton.disabled =
-            currentIndex >= maxIndex;
+    const restartSlider = () => {
+      startSlider();
+    };
 
 
-        prevButton.style.opacity =
-            currentIndex === 0
-                ? "0.45"
-                : "1";
+    if (nextButton) {
 
-
-        nextButton.style.opacity =
-            currentIndex >= maxIndex
-                ? "0.45"
-                : "1";
-
-    }
-
-
-    prevButton.addEventListener(
+      nextButton.addEventListener(
         "click",
         () => {
 
-            if (
-                currentIndex > 0
-            ) {
+          moveSlider(
+            currentIndex + 1
+          );
 
-                currentIndex--;
-
-                updateSlider();
-
-            }
+          restartSlider();
 
         }
-    );
+      );
+
+    }
 
 
-    nextButton.addEventListener(
+    if (previousButton) {
+
+      previousButton.addEventListener(
         "click",
         () => {
 
-            const visibleCards =
-                getVisibleCards();
+          moveSlider(
+            currentIndex - 1
+          );
 
-
-            const maxIndex =
-                Math.max(
-                    0,
-                    cards.length -
-                    visibleCards
-                );
-
-
-            if (
-                currentIndex <
-                maxIndex
-            ) {
-
-                currentIndex++;
-
-                updateSlider();
-
-            }
+          restartSlider();
 
         }
-    );
-
-
-    /*
-        Touch / Swipe
-    */
-
-    let touchStartX = 0;
-
-    let touchEndX = 0;
-
-
-    slider.addEventListener(
-        "touchstart",
-        event => {
-
-            touchStartX =
-                event.changedTouches[0]
-                    .screenX;
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    slider.addEventListener(
-        "touchend",
-        event => {
-
-            touchEndX =
-                event.changedTouches[0]
-                    .screenX;
-
-
-            handleSwipe();
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    function handleSwipe() {
-
-        const difference =
-            touchStartX -
-            touchEndX;
-
-
-        if (
-            Math.abs(difference) < 50
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            difference > 0
-        ) {
-
-            nextButton.click();
-
-        } else {
-
-            prevButton.click();
-
-        }
+      );
 
     }
 
 
-    /*
-        Reset slider when
-        viewport changes
-    */
+    testimonialSlider.addEventListener(
+      "mouseenter",
+      () => {
+        clearInterval(sliderTimer);
+      }
+    );
+
+
+    testimonialSlider.addEventListener(
+      "mouseleave",
+      () => {
+        startSlider();
+      }
+    );
+
+
+    testimonialSlider.addEventListener(
+      "touchstart",
+      () => {
+        clearInterval(sliderTimer);
+      },
+      { passive: true }
+    );
+
+
+    testimonialSlider.addEventListener(
+      "touchend",
+      () => {
+        startSlider();
+      },
+      { passive: true }
+    );
+
 
     window.addEventListener(
-        "resize",
-        updateSlider
+      "resize",
+      () => {
+
+        currentIndex = 0;
+
+        moveSlider(0);
+
+        startSlider();
+
+      }
     );
 
 
-    updateSlider();
+    startSlider();
 
-}
-
-
-/* =========================================================
-   07. JOIN FORM
-========================================================= */
-
-function initJoinForm() {
-
-    const form =
-        document.querySelector(
-            "#joinForm"
-        );
+  }
 
 
-    const message =
-        document.querySelector(
-            "#formMessage"
-        );
+  /* =====================================================
+     IMAGE GALLERY
+     Automatic slow marquee.
+  ===================================================== */
+
+  const galleryTrack =
+    document.querySelector(
+      ".gallery-track"
+    );
+
+  if (galleryTrack) {
+
+    let galleryAnimation;
+
+    const startGallery = () => {
+
+      galleryTrack.style.animationPlayState =
+        "running";
+
+    };
 
 
-    if (!form) {
+    const stopGallery = () => {
 
-        return;
+      galleryTrack.style.animationPlayState =
+        "paused";
 
-    }
+    };
 
+
+    galleryTrack.addEventListener(
+      "mouseenter",
+      stopGallery
+    );
+
+    galleryTrack.addEventListener(
+      "mouseleave",
+      startGallery
+    );
+
+    galleryTrack.addEventListener(
+      "touchstart",
+      stopGallery,
+      { passive: true }
+    );
+
+    galleryTrack.addEventListener(
+      "touchend",
+      startGallery,
+      { passive: true }
+    );
+
+  }
+
+
+  /* =====================================================
+     WHATSAPP FORM
+  ===================================================== */
+
+  const form =
+    document.getElementById(
+      "joinForm"
+    );
+
+  const formMessage =
+    document.getElementById(
+      "formMessage"
+    );
+
+
+  const showFormMessage = (
+    message,
+    type = "success"
+  ) => {
+
+    if (!formMessage) return;
+
+    formMessage.textContent = message;
+
+    formMessage.className =
+      "form-message " + type;
+
+  };
+
+
+  const validEmail = (email) => {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      .test(email);
+
+  };
+
+
+  if (form) {
 
     form.addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-
-            /*
-                Get values
-            */
-
-            const name =
-                document.querySelector(
-                    "#fullName"
-                )?.value.trim();
-
-
-            const email =
-                document.querySelector(
-                    "#email"
-                )?.value.trim();
-
-
-            const phone =
-                document.querySelector(
-                    "#phone"
-                )?.value.trim();
-
-
-            const interest =
-                document.querySelector(
-                    "#interest"
-                )?.value;
-
-
-            /*
-                Clear previous message
-            */
-
-            if (message) {
-
-                message.textContent = "";
-
-            }
-
-
-            /*
-                Basic validation
-            */
-
-            if (!name) {
-
-                showFormError(
-                    message,
-                    "Please enter your full name."
-                );
-
-                return;
-
-            }
-
-
-            if (!isValidEmail(email)) {
-
-                showFormError(
-                    message,
-                    "Please enter a valid email address."
-                );
-
-                return;
-
-            }
-
-
-            if (!phone) {
-
-                showFormError(
-                    message,
-                    "Please enter your phone number."
-                );
-
-                return;
-
-            }
-
-
-            if (!interest) {
-
-                showFormError(
-                    message,
-                    "Please select a program."
-                );
-
-                return;
-
-            }
-
-
-            /*
-                Success
-            */
-
-            if (message) {
-
-                message.style.color =
-                    "#728c63";
-
-                message.textContent =
-                    `Thank you, ${name}! Your interest has been received. We will contact you soon.`;
-
-            }
-
-
-            /*
-                Store locally for now.
-
-                IMPORTANT:
-                This is only front-end storage.
-                Connect this form to PHP/backend
-                later for real submissions.
-            */
-
-            try {
-
-                const submissions =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "yogmaltiLeads"
-                        )
-                    ) || [];
-
-
-                submissions.push({
-
-                    name: name,
-
-                    email: email,
-
-                    phone: phone,
-
-                    interest: interest,
-
-                    date:
-                        new Date().toISOString()
-
-                });
-
-
-                localStorage.setItem(
-                    "yogmaltiLeads",
-                    JSON.stringify(
-                        submissions
-                    )
-                );
-
-            } catch (error) {
-
-                console.warn(
-                    "Local storage unavailable.",
-                    error
-                );
-
-            }
-
-
-            /*
-                Reset form
-            */
-
-            form.reset();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   08. EMAIL VALIDATION
-========================================================= */
-
-function isValidEmail(email) {
-
-    if (!email) {
-
-        return false;
-
-    }
-
-
-    const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-    return emailPattern.test(
-        email
-    );
-
-}
-
-
-/* =========================================================
-   09. FORM ERROR
-========================================================= */
-
-function showFormError(
-    messageElement,
-    text
-) {
-
-    if (!messageElement) {
-
-        return;
-
-    }
-
-
-    messageElement.style.color =
-        "#b34d4d";
-
-
-    messageElement.textContent =
-        text;
-
-}
-
-
-/* =========================================================
-   10. CURRENT YEAR
-========================================================= */
-
-function initCurrentYear() {
-
-    const yearElement =
-        document.querySelector(
-            "#currentYear"
-        );
-
-
-    if (!yearElement) {
-
-        return;
-
-    }
-
-
-    yearElement.textContent =
-        new Date().getFullYear();
-
-}
-
-
-/* =========================================================
-   11. SCROLL REVEAL
-========================================================= */
-
-function initScrollReveal() {
-
-    /*
-        Respect reduced-motion settings.
-    */
-
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-
-    if (reducedMotion) {
-
-        return;
-
-    }
-
-
-    const elements =
-        document.querySelectorAll(
-            ".program-card, " +
-            ".expert-card, " +
-            ".benefit-card, " +
-            ".testimonial-card, " +
-            ".stat-item, " +
-            ".contact-box"
-        );
-
-
-    if (!elements.length) {
-
-        return;
-
-    }
-
-
-    elements.forEach(element => {
-
-        element.style.opacity = "0";
-
-        element.style.transform =
-            "translateY(25px)";
-
-        element.style.transition =
-            "opacity 0.7s ease, " +
-            "transform 0.7s ease";
-
-    });
-
-
-    const observer =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        !entry.isIntersecting
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    entry.target.style.opacity =
-                        "1";
-
-
-                    entry.target.style.transform =
-                        "translateY(0)";
-
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    elements.forEach(element => {
-
-        observer.observe(element);
-
-    });
-
-}
-
-
-/* =========================================================
-   12. CLOSE MOBILE MENU ON RESIZE
-========================================================= */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        if (
-            window.innerWidth > 900
-        ) {
-
-            const mobileMenu =
-                document.querySelector(
-                    "#mobileMenu"
-                );
-
-
-            const menuToggle =
-                document.querySelector(
-                    ".menu-toggle"
-                );
-
-
-            if (mobileMenu) {
-
-                mobileMenu.classList.remove(
-                    "active"
-                );
-
-            }
-
-
-            if (menuToggle) {
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open menu"
-                );
-
-            }
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   13. PREVENT EMPTY HASH JUMP
-========================================================= */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        const link =
-            event.target.closest(
-                'a[href="#"]'
-            );
-
-
-        if (!link) {
-
-            return;
-
-        }
-
+      "submit",
+      (event) => {
 
         event.preventDefault();
 
+
+        const nameInput =
+          document.getElementById(
+            "fullName"
+          );
+
+        const emailInput =
+          document.getElementById(
+            "email"
+          );
+
+        const phoneInput =
+          document.getElementById(
+            "phone"
+          );
+
+        const interestInput =
+          document.getElementById(
+            "interest"
+          );
+
+
+        const name =
+          nameInput?.value.trim() || "";
+
+        const email =
+          emailInput?.value.trim() || "";
+
+        const phone =
+          phoneInput?.value.trim() || "";
+
+        const interest =
+          interestInput?.value || "";
+
+
+        /* Validation */
+
+        if (
+          !name ||
+          !email ||
+          !phone ||
+          !interest
+        ) {
+
+          showFormMessage(
+            "Please fill all required fields.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (!validEmail(email)) {
+
+          showFormMessage(
+            "Please enter a valid email address.",
+            "error"
+          );
+
+          emailInput?.focus();
+
+          return;
+
+        }
+
+
+        if (
+          WHATSAPP_NUMBER.includes("X")
+        ) {
+
+          showFormMessage(
+            "Please add the client's WhatsApp number in script.js.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* Get selected program name */
+
+        let interestName =
+          interest;
+
+        if (
+          interestInput &&
+          interestInput.selectedOptions &&
+          interestInput.selectedOptions[0]
+        ) {
+
+          interestName =
+            interestInput
+              .selectedOptions[0]
+              .textContent
+              .trim();
+
+        }
+
+
+        /* Clean phone */
+
+        const cleanPhone =
+          phone.replace(
+            /[^\d+\-\s()]/g,
+            ""
+          );
+
+
+        /* =================================================
+           WHATSAPP MESSAGE
+        ================================================= */
+
+        const message =
+`Hello YogMalti,
+
+I want to join YogMalti Community.
+
+Name: ${name}
+Phone: ${cleanPhone}
+Email: ${email}
+Interested in: ${interestName}
+
+Please share the next steps.`;
+
+
+        const whatsappNumber =
+          WHATSAPP_NUMBER.replace(
+            /\D/g,
+            ""
+          );
+
+
+        const whatsappURL =
+          "https://wa.me/" +
+          whatsappNumber +
+          "?text=" +
+          encodeURIComponent(message);
+
+
+        showFormMessage(
+          "Opening WhatsApp...",
+          "success"
+        );
+
+
+        /* Open WhatsApp */
+
+        setTimeout(() => {
+
+          window.open(
+            whatsappURL,
+            "_blank",
+            "noopener,noreferrer"
+          );
+
+        }, 200);
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     FAQ ACCORDION
+  ===================================================== */
+
+  const faqItems =
+    document.querySelectorAll(
+      ".faq-list details"
+    );
+
+  faqItems.forEach((item) => {
+
+    item.addEventListener(
+      "toggle",
+      () => {
+
+        if (!item.open) return;
+
+        faqItems.forEach((otherItem) => {
+
+          if (
+            otherItem !== item
+          ) {
+
+            otherItem.removeAttribute(
+              "open"
+            );
+
+          }
+
+        });
+
+      }
+    );
+
+  });
+
+
+  /* =====================================================
+     GALLERY IMAGE FALLBACK
+  ===================================================== */
+
+  const galleryImages =
+    document.querySelectorAll(
+      ".gallery-item img"
+    );
+
+  galleryImages.forEach((image) => {
+
+    image.addEventListener(
+      "error",
+      () => {
+
+        image.classList.add(
+          "image-error"
+        );
+
+      }
+    );
+
+  });
+
+
+  /* =====================================================
+     SCROLL REVEAL
+  ===================================================== */
+
+  const revealElements =
+    document.querySelectorAll(
+      [
+        ".program-card",
+        ".expert-card",
+        ".benefit-card",
+        ".testimonial-card",
+        ".gallery-item",
+        ".stat-item"
+      ].join(",")
+    );
+
+
+  if (
+    revealElements.length &&
+    "IntersectionObserver" in window
+  ) {
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach((entry) => {
+
+            if (
+              !entry.isIntersecting
+            ) {
+              return;
+            }
+
+            entry.target.classList.add(
+              "is-visible"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          });
+
+        },
+        {
+          threshold: 0.08
+        }
+      );
+
+
+    revealElements.forEach((element) => {
+
+      revealObserver.observe(
+        element
+      );
+
+    });
+
+  }
+
+
+  /* =====================================================
+     CURRENT YEAR
+  ===================================================== */
+
+  const currentYear =
+    document.getElementById(
+      "currentYear"
+    );
+
+  if (currentYear) {
+
+    currentYear.textContent =
+      new Date().getFullYear();
+
+  }
+
+
+  /* =====================================================
+     ESCAPE KEY
+  ===================================================== */
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        document.activeElement?.blur();
+
+      }
+
     }
-);
+  );
 
-
-/* =========================================================
-   END
-========================================================= */
+});
