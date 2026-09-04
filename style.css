@@ -1,4 +1,3 @@
-
 /* =========================================================
    YOGMALTI — MAIN STYLESHEET
    Premium wellness / yoga landing page
@@ -109,6 +108,7 @@ button{
     color:var(--muted);
 }
 
+
 /* =========================================================
    HEADER / NAVBAR
    ========================================================= */
@@ -160,7 +160,9 @@ button{
     width:72px;
     height:52px;
     border-radius:12px;
-    object-fit:cover;
+    object-fit:contain !important;
+    object-position:center;
+    background:#fff;
     border:1px solid rgba(111,74,168,.18);
     box-shadow:var(--shadow-soft);
 }
@@ -187,7 +189,9 @@ button{
     color:#fff;
     font-weight:700;
     letter-spacing:.02em;
-    transition:transform var(--transition),background var(--transition),box-shadow var(--transition);
+    transition:transform var(--transition),
+                background var(--transition),
+                box-shadow var(--transition);
 }
 
 .navbar-join-btn:hover,
@@ -198,9 +202,9 @@ button{
     box-shadow:0 12px 24px rgba(111,74,168,.22);
 }
 
+
 /* =========================================================
    TEMPORARY JANMASHTAMI
-   Remove this complete section after Janmashtami.
    ========================================================= */
 
 .janmashtami-temporary{
@@ -225,7 +229,9 @@ button{
 .janmashtami-inner > img{
     width:125px;
     height:105px;
-    object-fit:cover;
+    object-fit:contain !important;
+    object-position:center;
+    background:transparent;
     border-radius:22px;
     box-shadow:var(--shadow-soft);
 }
@@ -241,6 +247,7 @@ button{
     margin-top:5px;
     color:var(--muted);
 }
+
 
 /* =========================================================
    FLOATING REGISTER
@@ -259,9 +266,10 @@ button{
     border-radius:16px 0 0 16px;
     background:var(--primary);
     color:#fff;
-    box-shadow:0 12px 30px rgba(60,39,84,.22);
+    box-shadow:0 12px 30px rgba(251, 251, 252, 0.22);
     writing-mode:vertical-rl;
-    transition:background var(--transition),padding var(--transition);
+    transition:background var(--transition),
+                padding var(--transition);
 }
 
 .sticky-register span{
@@ -280,6 +288,7 @@ button{
     background:var(--primary-dark);
     padding-right:16px;
 }
+
 
 /* =========================================================
    HERO
@@ -390,7 +399,8 @@ button{
     z-index:2;
     width:min(100%,510px);
     max-height:560px;
-    object-fit:cover;
+    object-fit:contain !important;
+    object-position:center;
     border-radius:50% 50% 46% 46%;
     box-shadow:var(--shadow);
 }
@@ -431,6 +441,7 @@ button{
     bottom:17%;
 }
 
+
 /* =========================================================
    GALLERY MARQUEE
    ========================================================= */
@@ -467,23 +478,33 @@ button{
     border-radius:20px;
     box-shadow:var(--shadow-soft);
     background:var(--primary-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .gallery-item img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain !important;
+    object-position:center;
     transition:transform .5s ease;
 }
 
 .gallery-item:hover img{
-    transform:scale(1.06);
+    transform:scale(1.03);
 }
 
 @keyframes yogmalti-marquee{
-    from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
 }
+
 
 /* =========================================================
    PROGRAMS
@@ -505,7 +526,8 @@ button{
     border-radius:var(--radius-md);
     background:#fff;
     box-shadow:var(--shadow-soft);
-    transition:transform var(--transition),box-shadow var(--transition);
+    transition:transform var(--transition),
+                box-shadow var(--transition);
 }
 
 .program-card:hover{
@@ -517,17 +539,21 @@ button{
     height:210px;
     overflow:hidden;
     background:var(--primary-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .program-image img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain !important;
+    object-position:center;
     transition:transform .55s ease;
 }
 
 .program-card:hover .program-image img{
-    transform:scale(1.05);
+    transform:scale(1.02);
 }
 
 .program-body{
@@ -562,6 +588,7 @@ button{
     font-size:.9rem;
 }
 
+
 /* =========================================================
    BENEFITS + STATS
    ========================================================= */
@@ -581,7 +608,8 @@ button{
     border:1px solid var(--border);
     border-radius:var(--radius-md);
     background:linear-gradient(145deg,#fff,#faf7fd);
-    transition:transform var(--transition),box-shadow var(--transition);
+    transition:transform var(--transition),
+                box-shadow var(--transition);
 }
 
 .benefit-card:hover{
@@ -642,6 +670,7 @@ button{
     font-size:.86rem;
 }
 
+
 /* =========================================================
    ABOUT / EXPERTS
    ========================================================= */
@@ -689,20 +718,37 @@ button{
     height:310px;
     overflow:hidden;
     background:var(--primary-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .expert-photo img{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain !important;
+    object-position:center;
+}
+
+.expert-info{
+    padding:0 22px 22px;
+}
+
+.expert-info h3{
+    color:var(--primary-dark);
 }
 
 .expert-details{
-    padding:22px;
+    padding:22px 0 0;
+    list-style:none;
 }
 
-.expert-details h3{
-    color:var(--primary-dark);
+.expert-details li{
+    margin-bottom:8px;
+}
+
+.expert-details li span{
+    color:var(--primary);
 }
 
 .expert-details p{
@@ -710,8 +756,187 @@ button{
     font-size:.88rem;
 }
 
+
 /* =========================================================
-   TESTIMONIALS — 3 MAIN CARDS + PEEKING CARDS
+   CREDENTIALS BUTTON
+   ========================================================= */
+
+.credentials-trigger,
+.credentials-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 18px;
+    padding: 11px 20px;
+
+    background-color: #6f4aa8 !important;
+    color: #ffffff !important;
+
+    border: 2px solid #6f4aa8 !important;
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 1.2;
+    text-align: center;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    box-shadow: 0 6px 18px rgba(111, 74, 168, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+
+/* Hover */
+
+.credentials-trigger:hover,
+.credentials-btn:hover {
+    background-color: #4d2d7c !important;
+    border-color: #4d2d7c !important;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 24px rgba(111, 74, 168, 0.35);
+}
+
+
+/* Active */
+
+.credentials-trigger:active,
+.credentials-btn:active {
+    transform: translateY(0);
+}
+
+
+/* Focus */
+
+.credentials-trigger:focus-visible,
+.credentials-btn:focus-visible {
+    outline: 3px solid rgba(111, 74, 168, 0.25);
+    outline-offset: 3px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .credentials-trigger,
+    .credentials-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        margin-top: 14px;
+    }
+
+}
+
+/* =========================================================
+   CREDENTIALS MODAL
+   ========================================================= */
+
+.credentials-modal{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(24,16,31,.72);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+}
+
+.credentials-modal.active{
+    display:flex;
+}
+
+.credentials-modal-content{
+    position:relative;
+
+    width:min(95vw,1000px);
+    max-height:92vh;
+
+    padding:18px;
+
+    overflow:auto;
+
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:20px;
+
+    background:#fff;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+}
+
+.credentials-modal-close{
+    position:absolute;
+    top:10px;
+    right:10px;
+
+    z-index:5;
+
+    width:42px;
+    height:42px;
+
+    display:grid;
+    place-items:center;
+
+    border:0;
+    border-radius:50%;
+
+    background:var(--primary);
+    color:#fff;
+
+    font-size:1.5rem;
+    line-height:1;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+    transition:
+        background var(--transition),
+        transform var(--transition);
+}
+
+.credentials-modal-close:hover{
+    background:var(--primary-dark);
+    transform:rotate(90deg);
+}
+
+.credentials-modal-content img,
+.credentials-image,
+.credential-image{
+    display:block;
+
+    width:auto;
+    max-width:100%;
+
+    height:auto;
+    max-height:calc(92vh - 55px);
+
+    margin:0 auto;
+
+    object-fit:contain !important;
+    object-position:center;
+
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   TESTIMONIALS
    ========================================================= */
 
 .testimonial-wrapper{
@@ -785,7 +1010,10 @@ button{
     background:#fff;
     color:var(--primary);
     box-shadow:var(--shadow-soft);
-    transition:background var(--transition),color var(--transition),transform var(--transition);
+    transition:
+        background var(--transition),
+        color var(--transition),
+        transform var(--transition);
 }
 
 .testimonial-arrow:hover{
@@ -793,6 +1021,7 @@ button{
     color:#fff;
     transform:scale(1.05);
 }
+
 
 /* =========================================================
    FAQ
@@ -848,6 +1077,7 @@ button{
     color:var(--muted);
     font-size:.9rem;
 }
+
 
 /* =========================================================
    CONTACT / JOIN
@@ -907,7 +1137,9 @@ button{
     background:#fff;
     color:var(--text);
     padding:13px 14px;
-    transition:border-color var(--transition),box-shadow var(--transition);
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
 .form-group input:focus,
@@ -987,6 +1219,7 @@ button{
     line-height:1;
 }
 
+
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -1006,6 +1239,7 @@ button{
 
 .footer-brand img{
     width:150px;
+    object-fit:contain !important;
     
 }
 
@@ -1068,6 +1302,7 @@ button{
     font-size:.8rem;
 }
 
+
 /* =========================================================
    WHATSAPP
    ========================================================= */
@@ -1086,13 +1321,16 @@ button{
     color:#fff;
     font-size:1.55rem;
     box-shadow:0 12px 28px rgba(0,0,0,.18);
-    transition:transform var(--transition),box-shadow var(--transition);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
 }
 
 .floating-whatsapp:hover{
     transform:translateY(-4px) scale(1.04);
     box-shadow:0 16px 34px rgba(0,0,0,.23);
 }
+
 
 /* =========================================================
    ACCESSIBILITY
@@ -1112,6 +1350,7 @@ button{
 .skip-link:focus{
     left:10px;
 }
+
 
 /* =========================================================
    TABLET
@@ -1134,7 +1373,13 @@ button{
     .footer-main{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .sticky-krishna{
+        width:78px;
+        max-width:78px;
+    }
 }
+
 
 /* =========================================================
    MOBILE
@@ -1150,7 +1395,8 @@ button{
         padding:72px 0;
     }
 
-    /* Navbar remains normal flow — NOT sticky/fixed */
+
+    /* Navbar remains normal flow */
     .navbar{
         min-height:auto;
         padding:15px 0;
@@ -1164,6 +1410,7 @@ button{
 
     .brand img{
         width:68px;
+        object-fit:contain !important;
     }
 
     .brand-name{
@@ -1178,6 +1425,7 @@ button{
         width:55px;
         height:42px;
         border-radius:9px;
+        object-fit:contain !important;
     }
 
     .devotional-text{
@@ -1190,6 +1438,8 @@ button{
         font-size:.72rem;
     }
 
+
+    /* Janmashtami */
     .janmashtami-inner{
         min-height:125px;
         gap:15px;
@@ -1200,6 +1450,7 @@ button{
         width:88px;
         height:82px;
         border-radius:16px;
+        object-fit:contain !important;
     }
 
     .janmashtami-content h2{
@@ -1210,6 +1461,8 @@ button{
         font-size:.76rem;
     }
 
+
+    /* Sticky Register */
     .sticky-register{
         top:auto;
         bottom:105px;
@@ -1222,6 +1475,27 @@ button{
         font-size:.67rem;
     }
 
+
+    /* Sticky Krishna above Register */
+    .sticky-krishna{
+        top:auto;
+        bottom:160px;
+
+        width:70px;
+        max-width:70px;
+
+        padding:3px;
+    }
+
+    .sticky-krishna img{
+        width:100%;
+        height:auto;
+        max-height:95px;
+        object-fit:contain !important;
+    }
+
+
+    /* Hero */
     .hero-section{
         padding:62px 0 55px;
     }
@@ -1260,6 +1534,7 @@ button{
 
     .hero-visual > img{
         width:min(100%,380px);
+        object-fit:contain !important;
     }
 
     .hero-circle{
@@ -1267,6 +1542,8 @@ button{
         height:310px;
     }
 
+
+    /* Gallery */
     .gallery-section{
         padding:60px 0 70px;
     }
@@ -1277,6 +1554,12 @@ button{
         flex-basis:190px;
     }
 
+    .gallery-item img{
+        object-fit:contain !important;
+    }
+
+
+    /* Programs */
     .programs-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
         gap:12px;
@@ -1284,6 +1567,10 @@ button{
 
     .program-image{
         height:135px;
+    }
+
+    .program-image img{
+        object-fit:contain !important;
     }
 
     .program-body{
@@ -1309,6 +1596,8 @@ button{
         line-height:1.5;
     }
 
+
+    /* Benefits */
     .benefits-grid{
         grid-template-columns:1fr;
     }
@@ -1332,6 +1621,8 @@ button{
         font-size:.72rem;
     }
 
+
+    /* About */
     .about-section > .container > .about-content,
     .about-section .about-grid{
         grid-template-columns:1fr;
@@ -1346,6 +1637,48 @@ button{
         height:280px;
     }
 
+    .expert-photo img{
+        object-fit:contain !important;
+    }
+
+
+    /* Credentials */
+    .credentials-btn{
+        width:100%;
+        margin-top:15px;
+    }
+
+    .credentials-modal{
+        padding:12px;
+    }
+
+    .credentials-modal-content{
+        width:100%;
+        max-height:94vh;
+        padding:12px;
+        border-radius:16px;
+    }
+
+    .credentials-modal-close{
+        width:38px;
+        height:38px;
+        top:7px;
+        right:7px;
+        font-size:1.3rem;
+    }
+
+    .credentials-modal-content img,
+    .credentials-image,
+    .credential-image{
+        width:auto;
+        max-width:100%;
+        height:auto;
+        max-height:calc(94vh - 45px);
+        object-fit:contain !important;
+    }
+
+
+    /* Testimonials */
     .testimonial-wrapper{
         gap:8px;
     }
@@ -1366,11 +1699,15 @@ button{
         padding:25px 21px;
     }
 
+
+    /* FAQ */
     .faq-grid{
         grid-template-columns:1fr;
         gap:32px;
     }
 
+
+    /* Contact */
     .contact-box{
         grid-template-columns:1fr;
         gap:35px;
@@ -1382,6 +1719,8 @@ button{
         grid-template-columns:1fr;
     }
 
+
+    /* Footer */
     .footer-main{
         grid-template-columns:1fr;
         gap:28px;
@@ -1397,6 +1736,8 @@ button{
         gap:12px 20px;
     }
 
+
+    /* WhatsApp */
     .floating-whatsapp{
         right:15px;
         bottom:17px;
@@ -1406,6 +1747,7 @@ button{
     }
 }
 
+
 /* =========================================================
    VERY SMALL PHONES
    ========================================================= */
@@ -1414,6 +1756,7 @@ button{
 
     .brand img{
         width:58px;
+        object-fit:contain !important;
     }
 
     .brand-name{
@@ -1428,6 +1771,7 @@ button{
     .krishna-arjun-img{
         width:48px;
         height:38px;
+        object-fit:contain !important;
     }
 
     .programs-grid{
@@ -1448,7 +1792,45 @@ button{
     .join-content h2{
         font-size:2rem;
     }
+
+    .sticky-krishna{
+        width:62px;
+        max-width:62px;
+        bottom:150px;
+    }
+
+    .sticky-krishna img{
+        max-height:85px;
+        object-fit:contain !important;
+    }
 }
+
+
+/* =========================================================
+   GLOBAL IMAGE SAFETY
+   IMPORTANT:
+   No image should ever be cropped.
+   ========================================================= */
+
+img{
+    max-width:100%;
+}
+
+.gallery-item img,
+.program-image img,
+.expert-photo img,
+.hero-visual > img,
+.hero-circle img,
+.janmashtami-inner > img,
+.krishna-arjun-img,
+.sticky-krishna img,
+.credentials-modal img,
+.credentials-image,
+.credential-image{
+    object-fit:contain !important;
+    object-position:center center;
+}
+
 
 /* =========================================================
    REDUCED MOTION
@@ -1472,3 +1854,487 @@ button{
         animation:none;
     }
 }
+
+
+/* =========================================================
+   FINAL FIXES — NO CROPPING + HERO CIRCLE + STICKY KRISHNA
+   ========================================================= */
+
+/* Never crop images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------------------------------------------------------
+   HERO: image must fit completely inside the circle
+   --------------------------------------------------------- */
+.hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+}
+
+.hero-circle {
+    position: absolute;
+    z-index: 1;
+    width: 470px;
+    height: 470px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+}
+
+.hero-visual > img {
+    position: relative;
+    z-index: 2;
+    display: block;
+
+    width: min(430px, 88%);
+    height: min(430px, 88%);
+
+    max-width: 430px;
+    max-height: 430px;
+
+    object-fit: contain !important;
+    object-position: center center;
+
+    /* Do not force the photo itself into an oval/circle */
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+/* ---------------------------------------------------------
+   GALLERY / PROGRAM / TRAINER — COMPLETE IMAGE
+   --------------------------------------------------------- */
+.gallery-item img,
+.program-image img,
+.expert-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    object-position: center center;
+}
+
+/* ---------------------------------------------------------
+   CREDENTIALS — COMPLETE DEGREE/CERTIFICATE
+   --------------------------------------------------------- */
+.credentials-modal-content {
+    overflow: auto;
+}
+
+.credentials-modal-content img,
+.credentials-image,
+.credential-image {
+    display: block;
+    width: auto !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+    max-height: calc(92vh - 55px) !important;
+
+    margin: 0 auto;
+
+    object-fit: contain !important;
+    object-position: center center;
+}
+
+/* ---------------------------------------------------------
+   JANMASHTAMI — COMPLETE IMAGE
+   --------------------------------------------------------- */
+.janmashtami-inner > img {
+    width: 125px;
+    height: 105px;
+    object-fit: contain !important;
+    object-position: center center;
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+@media (max-width: 760px) {
+
+    .hero-visual {
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-circle {
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+    }
+
+    .hero-visual > img {
+        width: 290px;
+        height: 290px;
+
+        max-width: 290px;
+        max-height: 290px;
+
+        object-fit: contain !important;
+        object-position: center center;
+
+        border-radius: 0 !important;
+        box-shadow: none;
+    }
+
+    /* Register stays fixed on the right */
+    .sticky-register {
+        right: 0;
+        top: auto;
+        bottom: 105px;
+        transform: none;
+        z-index: 100;
+    }
+
+    /* Krishna stays directly above Register */
+    .sticky-krishna {
+        right: 0;
+        top: auto;
+        bottom: 160px;
+
+        width: 70px;
+        min-height: 0;
+        max-width: 70px;
+
+        padding: 2px;
+        z-index: 99;
+    }
+
+    .sticky-krishna img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 95px;
+        object-fit: contain !important;
+    }
+
+    .gallery-item img,
+    .program-image img,
+    .expert-photo img {
+        object-fit: contain !important;
+    }
+
+    .janmashtami-inner > img {
+        width: 88px;
+        height: 82px;
+        object-fit: contain !important;
+    }
+
+    .credentials-modal {
+        padding: 10px;
+    }
+
+    .credentials-modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 94vh;
+        padding: 10px;
+    }
+
+    .credentials-modal-content img,
+    .credentials-image,
+    .credential-image {
+        max-width: 100% !important;
+        max-height: calc(94vh - 45px) !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+}
+
+/* ---------------------------------------------------------
+   VERY SMALL PHONES
+   --------------------------------------------------------- */
+@media (max-width: 390px) {
+
+    .hero-circle {
+        width: 290px;
+        height: 290px;
+    }
+
+    .hero-visual > img {
+        width: 265px;
+        height: 265px;
+        max-width: 265px;
+        max-height: 265px;
+        object-fit: contain !important;
+    }
+
+    .sticky-krishna {
+        width: 62px;
+        max-width: 62px;
+        bottom: 150px;
+    }
+
+    .sticky-krishna img {
+        max-height: 85px;
+        object-fit: contain !important;
+    }
+}
+
+/* Final absolute no-crop rule for all relevant site images */
+.gallery-item,
+.program-image,
+.expert-photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item img,
+.program-image img,
+.expert-photo img,
+.hero-visual > img,
+.janmashtami-inner > img,
+.sticky-krishna img,
+.credentials-modal-content img {
+    object-fit: contain !important;
+    object-position: center center;
+}
+
+
+/* =========================================================
+   FLOATING IMAGE STACK
+   Two WhatsApp-style circular images:
+   Upper image + Shri Krishna
+   ========================================================= */
+
+.floating-image-stack{
+    position:fixed;
+    right:18px;
+    bottom:92px;
+    z-index:9998;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+
+    pointer-events:none;
+}
+
+.sticky-floating-image{
+    width:62px;
+    height:62px;
+    flex:0 0 62px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+    border-radius:50%;
+
+    background:#fff;
+    border:3px solid #fff;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.20),
+        0 0 0 2px rgba(111,74,168,.15);
+
+    pointer-events:auto;
+}
+
+.sticky-floating-image img{
+    display:block;
+    width:100%;
+    height:100%;
+
+    max-width:none;
+
+    object-fit:contain !important;
+    object-position:center center;
+
+    border-radius:50%;
+}
+
+
+
+/* Shri Krishna image */
+.sticky-floating-image-krishna{
+    position:relative;
+}
+
+/* Slight hover effect */
+.sticky-floating-image:hover{
+    transform:scale(1.06);
+    box-shadow:
+        0 10px 26px rgba(0,0,0,.24),
+        0 0 0 2px rgba(111,74,168,.22);
+}
+
+/* Register remains below the image stack */
+.sticky-register{
+    position:fixed;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:9999;
+}
+
+/* =========================================================
+   HERO — COMPLETE IMAGE INSIDE CIRCLE
+   ========================================================= */
+
+.hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:520px;
+}
+
+.hero-circle{
+    position:absolute;
+    z-index:1;
+    width:470px;
+    height:470px;
+    border-radius:50%;
+    background:var(--primary-soft);
+}
+
+.hero-visual > img{
+    position:relative;
+    z-index:2;
+    display:block;
+
+    width:min(430px,88%);
+    height:min(430px,88%);
+    max-width:430px;
+    max-height:430px;
+
+    object-fit:contain !important;
+    object-position:center center;
+
+    border-radius:0 !important;
+    box-shadow:none;
+}
+
+/* =========================================================
+   NO-CROP IMAGE SAFETY
+   ========================================================= */
+
+.gallery-item,
+.program-image,
+.expert-photo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.gallery-item img,
+.program-image img,
+.expert-photo img,
+.janmashtami-inner > img,
+.credentials-modal-content img,
+.credentials-image,
+.credential-image{
+    object-fit:contain !important;
+    object-position:center center;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width:760px){
+
+    .floating-image-stack{
+        right:12px;
+        bottom:82px;
+        gap:8px;
+    }
+
+    .sticky-floating-image{
+        width:54px;
+        height:54px;
+        flex-basis:54px;
+        border-width:2px;
+    }
+
+    .sticky-register{
+        right:0;
+        top:auto;
+        bottom:18px;
+        transform:none;
+        z-index:9999;
+    }
+
+    .hero-visual{
+        min-height:350px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .hero-circle{
+        width:320px;
+        height:320px;
+        border-radius:50%;
+    }
+
+    .hero-visual > img{
+        width:290px;
+        height:290px;
+        max-width:290px;
+        max-height:290px;
+        object-fit:contain !important;
+        object-position:center center;
+        border-radius:0 !important;
+        box-shadow:none;
+    }
+
+    .gallery-item img,
+    .program-image img,
+    .expert-photo img{
+        object-fit:contain !important;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width:390px){
+
+    .floating-image-stack{
+        right:9px;
+        bottom:78px;
+        gap:7px;
+    }
+
+    .sticky-floating-image{
+        width:48px;
+        height:48px;
+        flex-basis:48px;
+    }
+
+    .hero-circle{
+        width:290px;
+        height:290px;
+    }
+
+    .hero-visual > img{
+        width:265px;
+        height:265px;
+        max-width:265px;
+        max-height:265px;
+        object-fit:contain !important;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+    .sticky-floating-image{
+        transition:none;
+    }
+}
+ 
