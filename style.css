@@ -2434,3 +2434,85 @@ img {
     }
 
 }
+/* =========================================================
+   MOBILE REGISTER BUTTON - EXTRA SLIM
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .sticky-register {
+        right: 0 !important;
+        left: auto !important;
+
+        top: 45% !important;
+        bottom: auto !important;
+
+        width: 38px !important;
+        min-width: 38px !important;
+        max-width: 38px !important;
+
+        height: 145px !important;
+
+        padding: 8px 4px !important;
+
+        writing-mode: vertical-rl !important;
+        transform: translateY(-50%) !important;
+
+        border-radius: 12px 0 0 12px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+
+        z-index: 9999 !important;
+
+        overflow: visible !important;
+    }
+
+    .sticky-register span {
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        letter-spacing: .04em !important;
+
+        writing-mode: vertical-rl !important;
+
+        white-space: nowrap !important;
+    }
+
+    .sticky-register b {
+        font-size: 14px !important;
+
+        writing-mode: horizontal-tb !important;
+
+        margin: 0 !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES - EVEN SLIMMER
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .sticky-register {
+        width: 35px !important;
+        min-width: 35px !important;
+        max-width: 35px !important;
+
+        height: 135px !important;
+
+        padding: 7px 3px !important;
+
+        border-radius: 10px 0 0 10px !important;
+    }
+
+    .sticky-register span {
+        font-size: 9px !important;
+    }
+
+    .sticky-register b {
+        font-size: 13px !important;
+    }
+}
