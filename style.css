@@ -1836,24 +1836,7 @@ img{
    REDUCED MOTION
    ========================================================= */
 
-@media (prefers-reduced-motion:reduce){
 
-    html{
-        scroll-behavior:auto;
-    }
-
-    *,
-    *::before,
-    *::after{
-        transition-duration:.01ms !important;
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-    }
-
-    .gallery-track{
-        animation:none;
-    }
-}
 
 
 /* =========================================================
@@ -2155,10 +2138,7 @@ img {
 
 
 
-/* Shri Krishna image */
-.sticky-floating-image-krishna{
-    position:relative;
-}
+
 
 /* Slight hover effect */
 .sticky-floating-image:hover{
@@ -2514,5 +2494,297 @@ img {
 
     .sticky-register b {
         font-size: 13px !important;
+    }
+}
+
+/* =========================================================
+   JANMASHTAMI ONE-TIME ANIMATION
+   ========================================================= */
+
+#janmashtami-popup {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 999999;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 70px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    background: transparent;
+
+    transition: opacity 0.6s ease;
+}
+
+
+/* SHOW POPUP */
+
+#janmashtami-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   KRISHNA + TEXT
+   ========================================================= */
+
+.janmashtami-box {
+    position: relative;
+
+    z-index: 1000001;
+
+    width: 100%;
+
+    text-align: center;
+
+    animation: krishnaEntry 1.2s ease-out forwards;
+}
+
+
+/* Krishna Image */
+
+.janmashtami-box img {
+    display: block;
+
+    width: 230px;
+    max-width: 60vw;
+
+    height: auto;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    filter: drop-shadow(
+        0 8px 15px rgba(0,0,0,0.25)
+    );
+}
+
+
+/* शुभ जन्माष्टमी */
+
+.janmashtami-box h1 {
+    margin: 18px 0 0;
+
+    padding: 0;
+
+    font-family:
+        "Noto Sans Devanagari",
+        "Mangal",
+        sans-serif;
+
+    font-size: 46px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    text-align: center;
+
+    color: #7b1fa2;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,0.20);
+}
+
+
+/* =========================================================
+   KRISHNA ENTRY
+   ========================================================= */
+
+@keyframes krishnaEntry {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-100px)
+            scale(0.5);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translateY(10px)
+            scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   FLOWER CONTAINER
+   ========================================================= */
+
+#petals {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: 1000000;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FLOWERS
+   ========================================================= */
+
+.petal {
+
+    position: absolute;
+
+    top: -40px;
+
+    width: 16px;
+    height: 22px;
+
+    background: #ff69b4;
+
+    border-radius:
+        100% 0 100% 0;
+
+    opacity: 1;
+
+    display: block;
+
+    animation-name: fallPetal;
+
+    animation-play-state: running;
+
+    animation-timing-function: linear;
+
+    animation-fill-mode: forwards;
+
+    will-change:
+        top,
+        transform;
+}
+
+
+/* Different sizes */
+
+.petal:nth-child(2n) {
+    width: 20px;
+    height: 26px;
+}
+
+.petal:nth-child(3n) {
+    width: 13px;
+    height: 18px;
+}
+
+
+/* Different colours */
+
+.petal:nth-child(4n) {
+    background: #ff1493;
+}
+
+.petal:nth-child(5n) {
+    background: #ffd166;
+}
+
+.petal:nth-child(6n) {
+    background: #ff9fba;
+}
+
+.petal:nth-child(7n) {
+    background: #f7a8d0;
+}
+
+
+/* =========================================================
+   FLOWER FALL
+   ========================================================= */
+
+@keyframes fallPetal {
+
+    0% {
+        top: -50px;
+
+        transform:
+            translateX(0)
+            rotate(0deg);
+    }
+
+    25% {
+        transform:
+            translateX(70px)
+            rotate(120deg);
+    }
+
+    50% {
+        transform:
+            translateX(-70px)
+            rotate(240deg);
+    }
+
+    75% {
+        transform:
+            translateX(60px)
+            rotate(300deg);
+    }
+
+    100% {
+        top: 110vh;
+
+        transform:
+            translateX(-50px)
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    #janmashtami-popup {
+        padding-top: 50px;
+    }
+
+    .janmashtami-box img {
+        width: 180px;
+        max-width: 55vw;
+    }
+
+    .janmashtami-box h1 {
+        margin-top: 14px;
+
+        font-size: 32px;
+    }
+
+    .petal {
+        width: 12px;
+        height: 17px;
     }
 }

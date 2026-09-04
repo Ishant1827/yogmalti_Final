@@ -891,3 +891,59 @@ YogMalti`;
     );
 
 });
+
+/* =========================================================
+   JANMASHTAMI ONE-TIME ANIMATION
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const popup = document.getElementById("janmashtami-popup");
+    const petals = document.getElementById("petals");
+
+    if (!popup || !petals) {
+        console.error("Janmashtami popup elements missing!");
+        return;
+    }
+
+    setTimeout(() => {
+
+        /* Show Krishna + text */
+        popup.classList.add("show");
+
+        /* Create flowers */
+        for (let i = 0; i < 180; i++) {
+
+            const flower = document.createElement("span");
+
+            flower.className = "petal";
+
+            flower.style.left = Math.random() * 100 + "%";
+
+            flower.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            flower.style.animationDelay =
+                (Math.random() * 1.5) + "s";
+
+            flower.style.opacity =
+                0.8 + Math.random() * 0.2;
+
+            petals.appendChild(flower);
+        }
+
+    }, 1000);
+
+
+    /* Remove complete animation */
+    setTimeout(() => {
+
+        popup.classList.remove("show");
+
+        setTimeout(() => {
+            popup.remove();
+        }, 1000);
+
+    }, 9000);
+
+});
