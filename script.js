@@ -40,150 +40,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       TESTIMONIAL CAROUSEL
-    ========================================================= */
+   TESTIMONIAL CAROUSEL
+========================================================= */
 
-    const testimonialTrack =
-        document.querySelector(".testimonials-track");
+const testimonialTrack =
+    document.querySelector("#testimonialSlider");
 
-    const testimonialCards =
-        document.querySelectorAll(".testimonial-card");
+const testimonialCards =
+    document.querySelectorAll(".testimonial-card");
 
-    const testimonialPrev =
-        document.querySelector(".testimonial-prev");
+const testimonialPrev =
+    document.querySelector(".testimonial-prev");
 
-    const testimonialNext =
-        document.querySelector(".testimonial-next");
-
-    let testimonialIndex = 0;
+const testimonialNext =
+    document.querySelector(".testimonial-next");
 
 
-    function getCardsPerView() {
+function getCardsPerView() {
 
-        if (window.innerWidth <= 760) {
-            return 1;
-        }
-
-        if (window.innerWidth <= 1100) {
-            return 2;
-        }
-
-        return 3;
+    if (window.innerWidth <= 760) {
+        return 1;
     }
 
+    if (window.innerWidth <= 1100) {
+        return 2;
+    }
 
-    function updateTestimonials() {
+    return 3;
+}
 
-        if (
-            !testimonialTrack ||
-            testimonialCards.length === 0
-        ) {
+
+/* NEXT BUTTON */
+
+if (testimonialNext) {
+
+    testimonialNext.addEventListener("click", () => {
+
+        if (!testimonialTrack || testimonialCards.length === 0) {
             return;
         }
 
-        const cardsPerView =
-            getCardsPerView();
+        const cardWidth =
+            testimonialCards[0].getBoundingClientRect().width;
 
-        const maxIndex =
-            Math.max(
-                0,
-                testimonialCards.length - cardsPerView
-            );
+        const gap = 22;
 
-        testimonialIndex =
-            Math.min(
-                testimonialIndex,
-                maxIndex
-            );
+        testimonialTrack.scrollBy({
+            left: cardWidth + gap,
+            behavior: "smooth"
+        });
+
+    });
+
+}
+
+
+/* PREVIOUS BUTTON */
+
+if (testimonialPrev) {
+
+    testimonialPrev.addEventListener("click", () => {
+
+        if (!testimonialTrack || testimonialCards.length === 0) {
+            return;
+        }
 
         const cardWidth =
-            testimonialCards[0]
-                .getBoundingClientRect()
-                .width;
+            testimonialCards[0].getBoundingClientRect().width;
 
-        const gap = 24;
+        const gap = 22;
 
-        const moveAmount =
-            testimonialIndex *
-            (cardWidth + gap);
+        testimonialTrack.scrollBy({
+            left: -(cardWidth + gap),
+            behavior: "smooth"
+        });
 
-        testimonialTrack.style.transform =
-            `translateX(-${moveAmount}px)`;
-    }
+    });
 
-
-    if (testimonialNext) {
-
-        testimonialNext.addEventListener(
-            "click",
-            () => {
-
-                const cardsPerView =
-                    getCardsPerView();
-
-                const maxIndex =
-                    Math.max(
-                        0,
-                        testimonialCards.length -
-                        cardsPerView
-                    );
-
-                if (
-                    testimonialIndex <
-                    maxIndex
-                ) {
-
-                    testimonialIndex++;
-
-                } else {
-
-                    testimonialIndex = 0;
-                }
-
-                updateTestimonials();
-            }
-        );
-    }
-
-
-    if (testimonialPrev) {
-
-        testimonialPrev.addEventListener(
-            "click",
-            () => {
-
-                const cardsPerView =
-                    getCardsPerView();
-
-                const maxIndex =
-                    Math.max(
-                        0,
-                        testimonialCards.length -
-                        cardsPerView
-                    );
-
-                if (testimonialIndex > 0) {
-
-                    testimonialIndex--;
-
-                } else {
-
-                    testimonialIndex = maxIndex;
-                }
-
-                updateTestimonials();
-            }
-        );
-    }
-
-
-    window.addEventListener(
-        "resize",
-        updateTestimonials
-    );
-
-    updateTestimonials();
-
+}
 
     /* =========================================================
        FAQ ACCORDION
