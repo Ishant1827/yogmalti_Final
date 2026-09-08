@@ -157,8 +157,8 @@ button{
 }
 
 .krishna-arjun-img{
-    width:80px;
-    height:60px;
+    width:120px;
+    height:120px;
     border-radius:12px;
     object-fit:contain !important;
     object-position:center;
@@ -1422,8 +1422,8 @@ button{
     }
 
     .krishna-arjun-img{
-        width:55px;
-        height:42px;
+        width:75px;
+        height:75px;
         border-radius:9px;
         object-fit:contain !important;
     }
